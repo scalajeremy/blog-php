@@ -1,3 +1,6 @@
+body{
+  margin: 0;
+}
 .grid-container {
   display: grid;
   grid-template-columns: 0.4fr 1.6fr;
@@ -5,8 +8,19 @@
   grid-template-areas: "Header Header" "Menu Content";
 }
 
-.Header { grid-area: Header; }
+.Header {
+  grid-area: Header;
+  text-align: center;
+}
 
-.Menu { grid-area: Menu; }
+.Menu {
+  grid-area: Menu;
+  background-color: #b6b6b6;
+  padding: 10px;
+}
 
-.Content { grid-area: Content; }
+.Content {
+  grid-area: Content;
+  padding-left: 10px;
+  padding-top: 10px;
+}
