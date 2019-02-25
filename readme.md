@@ -20,6 +20,9 @@
 
 ### Team
 [Ludivine](https://github.com/LudivineHay)
+
 [Thibault](https://github.com/ThibautJanssens)
+
 [Jamal](https://github.com/rabujev)
+
 [Jeremy](https://github.com/scalajeremy)
