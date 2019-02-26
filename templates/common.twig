@@ -2,13 +2,24 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>CRUD app | {{ pagename }}</title>
     <link rel="stylesheet" href="/css/master.css">
   </head>
   <body>
-    {{ include('navbar.twig') }}
+    <div class="container">
+      <header class="bg-secondary text-white">
+        <h1>Mots Pressés</h1>
+      </header>
 
-    {% block content %}
-    {% endblock %}
+      {{ include('commonNavbar.twig') }}
+
+      {% block content %}
+      {% endblock %}
+
+      <footer class="bg-secondary text-white">
+        <p>Copyrights 2019 - Mots Pressés</p>
+      </footer>
+    </div>
   </body>
 </html>
