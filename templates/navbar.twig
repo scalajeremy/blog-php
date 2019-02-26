@@ -1,7 +1,11 @@
-<ul class="navbar">
-  {% for routename, linkname in navbar %}
-    <a href={{ router.pathFor(routename) }}>
-      <li {% if linkname == pagename %}class="active"{% endif %}>{{linkname}}</li>
-    </a>
-  {% endfor %}
-</ul>
+
+<div class="sidenav">
+  <p>ARTICLE</p>
+  <a href="#add-article">Add Articles</a>
+  <a href="#manage-article">Manage Articles</a>
+  <a href="#category-article">Category</a>
+  <p>LIBRARY</p>
+  <a href="#manage-media">Manage Media</a>
+  <p>USERS</p>
+  <a href="#manage-users">Manage Users</a>
+</div>
