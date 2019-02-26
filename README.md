@@ -4,6 +4,8 @@ A working and simple Slim-PHP script for blogging
 
 ## Useful links
 
+[Mockup](https://balsamiq.cloud/sei7jok/po0krtx/r44C8)
+
 [Front-end Trello](https://trello.com/b/s88qJWJX/front-end)
 
 [Back-end Trello](https://trello.com/b/8FG1QsnB/back-end)
