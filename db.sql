@@ -5,7 +5,7 @@ CREATE SCHEMA blog;
 CREATE TYPE blog.boolean AS ENUM('True', 'False');
 
 --create tables
-CREATE TABLE users{
+CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
     last_name VARCHAR(50) NOT NULL CHECK (last_name != ''),
     first_name VARCHAR(50) NOT NULL CHECK (first_name != ''),
@@ -13,62 +13,91 @@ CREATE TABLE users{
     passwd VARCHAR(255) NOT NULL,
     email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE, 
     is_admin blog.boolean NOT NULL
-};
+);
 
-CREATE TABLE articles{
+CREATE TABLE articles(
     article_id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     date_publication TIMESTAMP NOT NULL,
     autor INTEGER NOT NULL,
     FOREIGN KEY (autor) REFERENCES users (user_id)
-};
+);
 
-CREATE TABLE images{
+CREATE TABLE images(
     img_id SERIAL PRIMARY KEY,
     photo OID NOT NULL,
-    img_name varchar(50)
-};
+    img_name VARCHAR(50)
+);
 
-CREATE TABLE comments{
+CREATE TABLE comments(
     comment_id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
     date_comment TIMESTAMP NOT NULL,
     autor INTEGER NOT NULL,
-    FOREIGN KEY (autor) REFERENCES users (user_id)
-};
+    article INTEGER NOT NULL,
+    FOREIGN KEY (autor) REFERENCES users (user_id),
+    FOREIGN KEY (article) REFERENCES articles (article_id)
+);
 
-CREATE TABLE categories{
+CREATE TABLE categories(
     category_id SERIAL PRIMARY KEY,
-    cat_name NOT NULL UNIQUE,
-};
+    cat_name VARCHAR (50) NOT NULL UNIQUE
+);
 
-CREATE TABLE list_of_categories{
+CREATE TABLE list_of_categories(
     article INTEGER NOT NULL,
     category INTEGER NOT NULL,
     FOREIGN KEY (article) REFERENCES articles(article_id),
-    FOREIGN KEY (catergory) REFERENCES catergories(category_id),
-    PRIMARY KEY (article, category) 
-};
-
-CREATE TABLE list_of_comments{
-    article INTEGER NOT NULL,
-    comment INTEGER NOT NULL,
-    FOREIGN KEY (article) REFERENCES articles(article_id),
-    FOREIGN KEY (comment) REFERENCES comments(comment_id),
-    PRIMARY KEY (article, comment)
-};
+    FOREIGN KEY (category) REFERENCES categories(category_id),
+    PRIMARY KEY (article, category)
+);
 
 --view to get all comment by articles 
 CREATE VIEW commentsByArticles AS
-	SELECT u.username, c.content, c.date_comment
-	FROM list_of_comments lc, articles a, comments c, users u
-	WHERE lc.article = a.article_id AND u.user_id = c.autor 
-        AND  
+	SELECT u.username AS "Username", c.content AS "Content", c.date_comment AS "Date", a.article_id AS "Id_article"
+	FROM articles a, comments c, users u
+	WHERE c.article = a.article_id AND u.user_id = c.autor 
+    ORDER BY a.article_id;
 
 --view to get all articles by categories
 CREATE VIEW articlesByCategories AS
-    SELECT
-    FROM
-    WHERE
-    ORDER BY
+    SELECT c.category_id AS "Cat_Id", a.title AS "Title", a.content AS "Content", u.username AS "Username"
+    FROM categories c, articles a, users u, list_of_categories lc
+    WHERE c.category_id = lc.category AND u.user_id = a.autor AND a.article_id = lc.article
+    ORDER BY c.category_id;
+
+--insert users for test
+INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Rabujev','Jamal', 'rabujev', 'pass123', 'test@gmail.com', 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Hay','Ludivine', 'ludivine', 'pass123', 'test2@gmail.com', 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Scala','Jeremy', 'thejameskiller', 'pass123', 'test3@gmail.com', 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 'True');
+
+--insert articles for test
+INSERT INTO articles(title, content, date_publication, autor) VALUES ('Narwhals', 'They are the jedi of the sea', NOW(), 4);
+INSERT INTO articles(title, content, date_publication, autor) VALUES ('Meditation at work', 'Sleep all day', NOW(), 1);
+INSERT INTO articles(title, content, date_publication, autor) VALUES ('Narcissistic Personality Disorder', 'The hallmarks of 
+    Narcissistic Personality Disorder (NPD) are grandiosity, a lack of empathy for other people, 
+    and a need for admiration. People with this condition are frequently described as arrogant, 
+    self-centered, manipulative, and demanding. They may also concentrate on grandiose fantasies 
+    (e.g. their own success, beauty, brilliance) and may be convinced that they deserve special treatment. 
+    These characteristics typically begin in early adulthood and must be consistently evident in multiple contexts, 
+    such as at work and in relationships. ', NOW(), 2);
+
+--insert comments for test
+INSERT INTO comments(content, date_comment, autor, article) VALUES ('Super comment', NOW(), 1, 3);
+INSERT INTO comments(content, date_comment, autor, article) VALUES ('Wow', NOW(), 2, 1);
+INSERT INTO comments(content, date_comment, autor, article) VALUES ('Amazing', NOW(), 3, 1);
+INSERT INTO comments(content, date_comment, autor, article) VALUES ('Very effective', NOW(), 4, 2);
+INSERT INTO comments(content, date_comment, autor, article) VALUES ('Nicely written', NOW(), 4, 3);
+
+--insert categories for test
+INSERT INTO categories(cat_name) VALUES('Meditation');
+INSERT INTO categories(cat_name) VALUES('Work environment');
+INSERT INTO categories(cat_name) VALUES('Wildlife');
+
+--insert list_of_categories
+INSERT INTO list_of_categories(article, category) VALUES (1, 3);
+INSERT INTO list_of_categories(article, category) VALUES (1, 2);
+INSERT INTO list_of_categories(article, category) VALUES (2, 1);
+INSERT INTO list_of_categories(article, category) VALUES (3, 2);
