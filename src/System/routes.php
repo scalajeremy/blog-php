@@ -13,7 +13,7 @@ $twig->addGlobal('navbar', [
   'login' => 'Login',
   'team' => 'Team',
   'articles' => 'Articles',
-  'signin' => 'SignIn',
+  'signup' => 'Signup',
 ]);
 
 $app->get('/', function (Request $request, Response $response) {
@@ -40,11 +40,11 @@ $app->get('/articles', function (Request $request, Response $response, array $ar
     return $response->getBody()->write($twig->render('articles.twig', $args));
 })->setName('articles');
 
-$app->get('/signin', function (Request $request, Response $response, array $args) {
+$app->get('/signup', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'SignIn';
-    return $response->getBody()->write($twig->render('signin.twig', $args));
-})->setName('signin');
+    $args['pagename'] = 'Signup';
+    return $response->getBody()->write($twig->render('signup.twig', $args));
+})->setName('signup');
 
 
 
