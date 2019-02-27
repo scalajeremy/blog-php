@@ -52,37 +52,37 @@ $app->get('/about', function (Request $request, Response $response, array $args)
 
 $app->get('/adm_dashboard', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'Admin Dashboard';
+    $args['pagename'] = 'Dashboard';
     return $response->getBody()->write($twig->render('adm_dashboard.twig', $args));
 })->setName('adm_dashboard');
 
 $app->get('/adm_articles', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'Admin Articles';
+    $args['pagename'] = 'Articles';
     return $response->getBody()->write($twig->render('adm_articles.twig', $args));
 })->setName('adm_articles');
 
 $app->get('/adm_add_articles', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'Admin Add/Edit Articles';
+    $args['pagename'] = 'Add/Edit Articles';
     return $response->getBody()->write($twig->render('adm_add_articles.twig', $args));
 })->setName('adm_add_articles');
 
 $app->get('/adm_cat', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'Admin Add/Edit Category';
+    $args['pagename'] = 'Add/Edit Category';
     return $response->getBody()->write($twig->render('adm_cat.twig', $args));
 })->setName('adm_cat');
 
 $app->get('/adm_media', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'Admin Add/Edit Media';
+    $args['pagename'] = 'Add/Edit Media';
     return $response->getBody()->write($twig->render('adm_media.twig', $args));
 })->setName('adm_media');
 
 $app->get('/adm_users', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'Admin Add/Edit Users';
+    $args['pagename'] = 'Add/Edit Users';
     return $response->getBody()->write($twig->render('adm_users.twig', $args));
 })->setName('adm_users');
 
