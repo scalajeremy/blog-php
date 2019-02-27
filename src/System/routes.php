@@ -13,6 +13,7 @@ $twig->addGlobal('navbar', [
   'champs' => 'Champions',
   'login' => 'Login',
   'about' => 'About',
+  'adm_dashboard' => 'Admin Dashboard',
 ]);
 
 $app->get('/', function (Request $request, Response $response) {
@@ -47,6 +48,43 @@ $app->get('/about', function (Request $request, Response $response, array $args)
     return $response->getBody()->write($twig->render('about.twig', $args));
 })->setName('about');
 
+// ADMIN ROUTES
+
+$app->get('/adm_dashboard', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Admin Dashboard';
+    return $response->getBody()->write($twig->render('adm_dashboard.twig', $args));
+})->setName('adm_dashboard');
+
+$app->get('/adm_articles', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Admin Articles';
+    return $response->getBody()->write($twig->render('adm_articles.twig', $args));
+})->setName('adm_articles');
+
+$app->get('/adm_add_articles', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Admin Add/Edit Articles';
+    return $response->getBody()->write($twig->render('adm_add_articles.twig', $args));
+})->setName('adm_add_articles');
+
+$app->get('/adm_cat', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Admin Add/Edit Category';
+    return $response->getBody()->write($twig->render('adm_cat.twig', $args));
+})->setName('adm_cat');
+
+$app->get('/adm_media', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Admin Add/Edit Media';
+    return $response->getBody()->write($twig->render('adm_media.twig', $args));
+})->setName('adm_media');
+
+$app->get('/adm_users', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Admin Add/Edit Users';
+    return $response->getBody()->write($twig->render('adm_users.twig', $args));
+})->setName('adm_users');
 
 
 $app->get('/{pagename}', function (Request $request, Response $response, array $args) {
