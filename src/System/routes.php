@@ -11,7 +11,9 @@ $twig->addGlobal('router', $app->getContainer()->get('router'));
 $twig->addGlobal('navbar', [
   'home' => 'Home',
   'login' => 'Login',
-  'about' => 'About',
+  'team' => 'Team',
+  'articles' => 'Articles',
+  'signin' => 'SignIn',
 ]);
 
 $app->get('/', function (Request $request, Response $response) {
