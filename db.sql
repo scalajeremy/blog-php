@@ -11,8 +11,8 @@ CREATE TABLE users(
     first_name VARCHAR(50) NOT NULL CHECK (first_name != ''),
     username VARCHAR(50) NOT NULL CHECK (last_name != '') UNIQUE,
     passwd VARCHAR(255) NOT NULL,
-    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE, 
-    is_admin blog.boolean NOT NULL
+    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE,
+    permission_lvl INTEGER NOT NULL CHECK (permission_lvl >= 0 AND permission_lvl <= 2) --2 = admin, 1 = author, 0 = user
 );
 
 CREATE TABLE articles(
@@ -53,11 +53,11 @@ CREATE TABLE list_of_categories(
     PRIMARY KEY (article, category)
 );
 
---view to get all comment by articles 
+--view to get all comment by articles
 CREATE VIEW commentsByArticles AS
 	SELECT u.username AS "Username", c.content AS "Content", c.date_comment AS "Date", a.article_id AS "Id_article"
 	FROM articles a, comments c, users u
-	WHERE c.article = a.article_id AND u.user_id = c.autor 
+	WHERE c.article = a.article_id AND u.user_id = c.autor
     ORDER BY a.article_id;
 
 --view to get all articles by categories
@@ -68,21 +68,24 @@ CREATE VIEW articlesByCategories AS
     ORDER BY c.category_id;
 
 --insert users for test
-INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Rabujev','Jamal', 'rabujev', 'pass123', 'test@gmail.com', 'True');
-INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Hay','Ludivine', 'ludivine', 'pass123', 'test2@gmail.com', 'True');
-INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Scala','Jeremy', 'thejameskiller', 'pass123', 'test3@gmail.com', 'True');
-INSERT INTO users(last_name, first_name, username, passwd, email, is_admin) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Rabujev','Jamal', 'rabujev', 'pass123', 'test@gmail.com', 2);
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Hay','Ludivine', 'ludivine', 'pass123', 'test2@gmail.com', 2);
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Scala','Jeremy', 'thejameskiller', 'pass123', 'test3@gmail.com', 2);
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 2);
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Bove', 'Alex', 'daddy', 'pass123', 'test5@gmail.com', 1);
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Degueldre','Samuel','hackzorr','pass123','test6@gmail.com', 0);
 
 --insert articles for test
 INSERT INTO articles(title, content, date_publication, autor) VALUES ('Narwhals', 'They are the jedi of the sea', NOW(), 4);
 INSERT INTO articles(title, content, date_publication, autor) VALUES ('Meditation at work', 'Sleep all day', NOW(), 1);
-INSERT INTO articles(title, content, date_publication, autor) VALUES ('Narcissistic Personality Disorder', 'The hallmarks of 
-    Narcissistic Personality Disorder (NPD) are grandiosity, a lack of empathy for other people, 
-    and a need for admiration. People with this condition are frequently described as arrogant, 
-    self-centered, manipulative, and demanding. They may also concentrate on grandiose fantasies 
-    (e.g. their own success, beauty, brilliance) and may be convinced that they deserve special treatment. 
-    These characteristics typically begin in early adulthood and must be consistently evident in multiple contexts, 
+INSERT INTO articles(title, content, date_publication, autor) VALUES ('Narcissistic Personality Disorder', 'The hallmarks of
+    Narcissistic Personality Disorder (NPD) are grandiosity, a lack of empathy for other people,
+    and a need for admiration. People with this condition are frequently described as arrogant,
+    self-centered, manipulative, and demanding. They may also concentrate on grandiose fantasies
+    (e.g. their own success, beauty, brilliance) and may be convinced that they deserve special treatment.
+    These characteristics typically begin in early adulthood and must be consistently evident in multiple contexts,
     such as at work and in relationships. ', NOW(), 2);
+INSERT INTO articles(title, content, date_publication, autor) VALUES ('WOW', 'ma bite', NOW(), 5);
 
 --insert comments for test
 INSERT INTO comments(content, date_comment, autor, article) VALUES ('Super comment', NOW(), 1, 3);
@@ -95,9 +98,11 @@ INSERT INTO comments(content, date_comment, autor, article) VALUES ('Nicely writ
 INSERT INTO categories(cat_name) VALUES('Meditation');
 INSERT INTO categories(cat_name) VALUES('Work environment');
 INSERT INTO categories(cat_name) VALUES('Wildlife');
+INSERT INTO categories(cat_name) VALUES('Living style');
 
 --insert list_of_categories
 INSERT INTO list_of_categories(article, category) VALUES (1, 3);
 INSERT INTO list_of_categories(article, category) VALUES (1, 2);
 INSERT INTO list_of_categories(article, category) VALUES (2, 1);
 INSERT INTO list_of_categories(article, category) VALUES (3, 2);
+INSERT INTO list_of_categories(article, category) VALUES (4, 4);
