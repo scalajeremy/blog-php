@@ -6,6 +6,19 @@ body {
   margin: 0;
   padding: 0; }
 
+.container {
+  padding: 0; }
+
+.card-deck {
+  margin-right: 0;
+  margin-left: 0;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.pagination {
+  padding-left: 15px;
+  padding-right: 15px; }
+
 header {
   padding-top: 20px;
   padding-bottom: 20px; }
@@ -21,8 +34,18 @@ footer {
     margin: 0; }
 
 .card-deck {
-  margin-top: 20px;
-  height: 500px; }
+  margin-top: 20px; }
+
+.card-text {
+  height: 200px;
+  overflow: hidden; }
 
 .pagination {
   margin-top: 20px; }
+
+.card img {
+  max-height: 250px;
+  object-fit: cover; }
+
+.page-link, .page-link:hover {
+  color: #353940; }
