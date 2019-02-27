@@ -70,10 +70,10 @@ footer {
   color: #353940;
 }
 
-.login-content {
+.login-content, .signup-content {
   height: 75vh;
 }
 
-.login-content form {
+.login-content form, .signup-content form {
   width: 60%;
 }
