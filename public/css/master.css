@@ -13,9 +13,11 @@ body {
   margin-right: 0;
   margin-left: 0;
   padding-left: 15px;
-  padding-right: 15px; }
-  .card-deck h6 {
-    font-style: italic; }
+  padding-right: 15px;
+  padding-top: 20px; }
+
+.card-articles h6 {
+  font-style: italic; }
 
 .pagination {
   padding-left: 15px;
@@ -35,25 +37,32 @@ footer {
     text-align: center;
     margin: 0; }
 
-.card-deck {
-  margin-top: 20px; }
-
 .card-text {
   height: 200px;
   overflow: hidden; }
 
 .pagination {
-  margin-top: 20px; }
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding-bottom: 10px; }
 
-.card img {
-  max-height: 250px;
+.card-articles img {
+  max-height: 230px;
   object-fit: cover; }
 
 .page-link, .page-link:hover {
   color: #353940; }
 
-.login-content, .signup-content {
-  height: 75vh; }
+.login-content, .signup-content, .main-content, .team-content {
+  min-height: 670px; }
 
 .login-content form, .signup-content form {
   width: 60%; }
+
+.team-name, .team-job {
+  text-align: center; }
+
+.team-member-img {
+  border-radius: 50%;
+  padding: 10px;
+  object-fit: cover; }
