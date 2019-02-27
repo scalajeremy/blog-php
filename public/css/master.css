@@ -10,8 +10,8 @@ body {
   padding: 0; }
 
 .card-deck {
-  margin-right: 0;
   margin-left: 0;
+  margin-right: 0;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 20px; }
@@ -19,50 +19,68 @@ body {
 .card-articles h6 {
   font-style: italic; }
 
-.pagination {
-  padding-left: 15px;
-  padding-right: 15px; }
-
-header {
-  padding-top: 20px;
-  padding-bottom: 20px; }
-  header h1 {
-    text-align: center;
-    margin: 0; }
-
-footer {
-  padding-top: 20px;
-  padding-bottom: 50px; }
-  footer p {
-    text-align: center;
-    margin: 0; }
-
-.card-text {
+.card-articles .card-text {
   height: 200px;
   overflow: hidden; }
-
-.pagination {
-  margin-top: 10px;
-  margin-bottom: 0;
-  padding-bottom: 10px; }
 
 .card-articles img {
   max-height: 230px;
   object-fit: cover; }
 
-.page-link, .page-link:hover {
+.pagination {
+  margin-bottom: 0;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+header {
+  padding-bottom: 20px;
+  padding-top: 20px; }
+  header h1 {
+    margin: 0;
+    text-align: center; }
+
+footer {
+  padding-bottom: 50px;
+  padding-top: 20px; }
+  footer p {
+    margin: 0;
+    text-align: center; }
+
+.page-link,
+.page-link:hover {
   color: #353940; }
 
-.login-content, .signup-content, .main-content, .team-content {
-  min-height: 670px; }
+.login-content,
+.signup-content,
+.main-content,
+.team-content {
+  min-height: 75vh; }
 
-.login-content form, .signup-content form {
+.login-content form,
+.signup-content form {
   width: 60%; }
 
-.team-name, .team-job {
+.team-name,
+.team-job {
   text-align: center; }
 
 .team-member-img {
   border-radius: 50%;
-  padding: 10px;
-  object-fit: cover; }
+  object-fit: cover;
+  padding: 10px; }
+
+.card-article {
+  padding-bottom: 20px; }
+  .card-article img {
+    max-height: 300px;
+    object-fit: cover; }
+  .card-article .author {
+    font-style: italic;
+    text-align: center; }
+  .card-article .title {
+    text-align: center; }
+  .card-article .date {
+    font-style: italic;
+    text-align: right; }
