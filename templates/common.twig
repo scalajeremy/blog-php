@@ -2,57 +2,25 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CRUD app | {{ pagename }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/master.css">
-    <style media="screen">
-    .tabs {
-      position: relative;
-      min-height: 200px; /* This part sucks */
-      clear: both;
-      margin: 25px 0;
-    }
-    .tab {
-      float: left;
-    }
-    .tab label {
-      background: #eee;
-      padding: 10px;
-      border: 1px solid #ccc;
-      margin-left: -1px;
-      position: relative;
-      left: 1px;
-    }
-    .tab [type=radio] {
-      display: none;
-    }
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-      position: absolute;
-      width: 400px;
-      top: 28px;
-      left: 0;
-      background: white;
-      right: 0;
-      bottom: 0;
-      padding: 20px;
-      border: 1px solid #ccc;
-    }
-    [type=radio]:checked ~ label {
-      background: white;
-      border-bottom: 1px solid white;
-      z-index: 2;
-    }
-    [type=radio]:checked ~ label ~ .content {
-      z-index: 1;
-    }
 
-    </style>
+    <title>Mots Pressés</title>
   </head>
-  <body>
-    {{ include('navbar.twig') }}
+  <body class="bg-light">
+    <div class="container bg-white">
+      <header class="bg-secondary text-white">
+        <h1>Mots Pressés</h1>
+      </header>
 
-    {% block content %}
-    {% endblock %}
+      {{ include('commonNavbar.twig') }}
+
+      {% block content %}
+      {% endblock %}
+
+      <footer class="bg-dark text-white-50">
+        <p>Copyrights 2019 - Mots Pressés</p>
+      </footer>
+    </div>
   </body>
 </html>

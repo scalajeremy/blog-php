@@ -27,6 +27,7 @@ $container['db'] = function ($container) {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 };
+
 // Twig view dependency
 $container['view'] = function ($container) {
     $cf = $container->get('settings')['view'];

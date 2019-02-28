@@ -6,7 +6,7 @@ return [
 
         // Twig templates settings
         'view' => [
-            'path' => '/home/rabujev/Becode/blog-php/templates',
+            'path' => '../templates',
             'description' => 'My website',
             'baseUrl' => '/../',
             'twig' => [

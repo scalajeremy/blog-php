@@ -11,10 +11,18 @@ $twig->addGlobal('router', $app->getContainer()->get('router'));
 $twig->addGlobal('navbar', [
   'home' => 'Home',
   'login' => 'Login',
-  'about' => 'About',
+  'team' => 'Team',
+  'articles' => 'Articles',
+  'signup' => 'Signup',
 ]);
 
 $app->get('/', function (Request $request, Response $response) {
+    global $twig;
+    $args['pagename'] = 'Home';
+    return $response->getBody()->write($twig->render('home.twig', $args));
+})->setName('home');
+
+$app->get('/home', function (Request $request, Response $response){
     global $twig;
     $args['pagename'] = 'Home';
     return $response->getBody()->write($twig->render('home.twig', $args));
@@ -26,33 +34,67 @@ $app->get('/login', function (Request $request, Response $response, array $args)
     return $response->getBody()->write($twig->render('login.twig', $args));
 })->setName('login');
 
-$app->get('/about', function (Request $request, Response $response, array $args) {
+$app->get('/team', function (Request $request, Response $response, array $args) {
     global $twig;
-    $args['pagename'] = 'About';
-    return $response->getBody()->write($twig->render('about.twig', $args));
-})->setName('about');
+    $args['pagename'] = 'Team';
+    return $response->getBody()->write($twig->render('team.twig', $args));
+})->setName('team');
+
+$app->get('/articles', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Articles';
+    return $response->getBody()->write($twig->render('articles.twig', $args));
+})->setName('articles');
+
+$app->get('/signup', function (Request $request, Response $response, array $args) {
+    global $twig;
+    $args['pagename'] = 'Signup';
+    return $response->getBody()->write($twig->render('signup.twig', $args));
+})->setName('signup');
 
 $app->post('/login', function(Request $request,Response $response, $args) {
-  $password = $request->getParam('password');
+  $password = password_hash($request->getParam('password'), PASSWORD_BCRYPT, ['cost'=>10]);
   $username = $request->getParam('username');
   $sql = 'SELECT * FROM users WHERE username = ?';
   $stmt= $this->db->prepare($sql);
-  $stmt->execute([''.$username]);
+  $stmt->execute([$username]);
   $result = $stmt->fetchAll();
-
+  
   if ($password != $result[0]['passwd']) {
-    echo "Nique ta grand-mère en jet-ski";
+    var_dump($password);
+    var_dump('--------------');
+    var_dump($result[0]['passwd']);
+    echo "Nop try again";
     return $this->view->render($response, 'login.twig');
   } else {
       session_start();
       $_SESSION['id'] = $fetch['id'];
       $_SESSION['username'] = $username;
-      echo "Vous êtes un Beau Gosse";
+      echo "Welcome " . $username . " !";
       return $this->view->render($response, 'home.twig');
     }
 })->setName('login');
 
+$app->post('/signup', function(Request $request,Response $response, $args) {
+    $firstname = $request->getParam('firstname');
+    $lastname = $request->getParam('lastname');
+    $email = $request->getParam('email');
+    $username = $request->getParam('username');
+    $password = password_hash($request->getParam('password'),PASSWORD_BCRYPT, ['cost' => 10]);
+   
+    try{
+        $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl) 
+        VALUES (?, ?, ?, ?, ?, 0)';
+        $stmt= $this->db->prepare($sql);
+        $stmt->execute(array($lastname, $firstname, $username, $password, $email));
+        return $this->view->render($response, 'login.twig');
+    }
+    catch(Exception $e){
+        var_dump($e->getMessage());
+        return $this->view->render($response, 'signup.twig');
+    }
 
+})->setName('signup');
 
 $app->get('/{pagename}', function (Request $request, Response $response, array $args) {
     global $twig;

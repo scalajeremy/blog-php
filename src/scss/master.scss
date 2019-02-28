@@ -1,5 +1,6 @@
 html {
   font-family: sans-serif;
+  height: 100%;
 }
 
 body {
@@ -7,26 +8,109 @@ body {
   padding: 0;
 }
 
-.navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    li {
-      width: 5rem;
-      height: 2rem;
-      background-color: lighten(green, 10%);
-      &:hover, &.active {
-        background-color: green;
-      }
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+.container {
+  padding: 0;
+}
 
-    a {
-      color: #000;
-      text-decoration: none;
-      height: 50%;
-    }
+.card-deck {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 20px;
+}
+
+.card-articles {
+  h6 {
+    font-style: italic;
+  }
+
+  .card-text {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  img {
+    max-height: 230px;
+    object-fit: cover;
+  }
+}
+
+.pagination {
+  margin-bottom: 0;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+header {
+  padding-bottom: 20px;
+  padding-top: 20px;
+
+  h1 {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+footer {
+  padding-bottom: 50px;
+  padding-top: 20px;
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.page-link,
+.page-link:hover {
+  color: #353940;
+}
+
+.login-content,
+.signup-content,
+.main-content,
+.team-content {
+  min-height: 75vh;
+}
+
+.login-content form,
+.signup-content form{
+  width: 60%;
+}
+
+.team-name,
+.team-job {
+  text-align: center;
+}
+
+.team-member-img {
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 10px;
+}
+
+.card-article {
+  padding-bottom: 20px;
+
+  img {
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  .author {
+    font-style: italic;
+    text-align: center;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .date {
+    font-style: italic;
+    text-align: right;
+  }
 }
