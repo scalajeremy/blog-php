@@ -19,57 +19,58 @@ $twig->addGlobal('navbar', [
 $app->get('/', function (Request $request, Response $response) {
     global $twig;
     $args['pagename'] = 'Home';
-    return $response->getBody()->write($twig->render('home.twig', $args));
+    return $this->view->render($response, 'home.twig');
 })->setName('home');
 
 $app->get('/home', function (Request $request, Response $response){
-    global $twig;
-    $args['pagename'] = 'Home';
-    return $response->getBody()->write($twig->render('home.twig', $args));
+    return $response->withRedirect('/', 301);
 })->setName('home');
 
 $app->get('/login', function (Request $request, Response $response, array $args) {
     global $twig;
     $args['pagename'] = 'Login';
-    return $response->getBody()->write($twig->render('login.twig', $args));
+    return $this->view->render($response, 'login.twig');
 })->setName('login');
 
 $app->get('/team', function (Request $request, Response $response, array $args) {
     global $twig;
     $args['pagename'] = 'Team';
-    return $response->getBody()->write($twig->render('team.twig', $args));
+    return $this->view->render($response, 'team.twig');
 })->setName('team');
 
 $app->get('/articles', function (Request $request, Response $response, array $args) {
     global $twig;
     $args['pagename'] = 'Articles';
-    return $response->getBody()->write($twig->render('articles.twig', $args));
+    return $this->view->render($response, 'articles.twig');
 })->setName('articles');
 
 $app->get('/signup', function (Request $request, Response $response, array $args) {
     global $twig;
     $args['pagename'] = 'Signup';
-    return $response->getBody()->write($twig->render('signup.twig', $args));
+    return $this->view->render($response, 'signup.twig');
 })->setName('signup');
+
+$app->get('/logout', function(Request $request, Response $response, array $args){
+    session_unset();
+    return $response->withRedirect('/', 301);
+})->setName('logout');
 
 $app->post('/login', function(Request $request,Response $response, $args) {
     $password = $request->getParam('password');
     $username = $request->getParam('username');
     $sql = 'SELECT * FROM users WHERE username = :username';
     $stmt= $this->db->prepare($sql);
-    $stmt->bindValue(':username', $username);
-    $stmt->execute([$username]);
-    $result = $stmt->fetchAll();
+    $stmt->bindValue('username', $username, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
   
-    if (!password_verify($password, $result[0]['passwd'])) {
-        echo "Nop try again";
-        return $this->view->render($response, 'login.twig');
+    if (!password_verify($password, $result['passwd'])) {
+        return $this->view->render($response, 'login.twig',$data);
     } else {
-        session_start();
-        $_SESSION['id'] = $fetch['id'];
+        $_SESSION['login'] = true;
         $_SESSION['username'] = $username;
-        echo "Welcome " . $username . " !";
-        return $this->view->render($response, 'home.twig');
+        $_SESSION['permission'] = $result['permission_lvl'];
+        return $response->withRedirect('/', 301);
     }
 })->setName('login');
 
@@ -84,13 +85,13 @@ $app->post('/signup', function(Request $request,Response $response, $args) {
         $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl) 
         VALUES (:last_name, :first_name, :username, :passwd, :email, 0)';
         $stmt= $this->db->prepare($sql);
-        $stmt->bindValue(':last_name', $lastname);
-        $stmt->bindValue(':first_name', $firstname);
-        $stmt->bindValue(':username', $username);
-        $stmt->bindValue(':passwd', $password);
-        $stmt->bindValue(':email', $email);
-        $stmt->execute(array($lastname, $firstname, $username, $password, $email));
-        return $this->view->render($response, 'login.twig');
+        $stmt->bindValue('last_name', $lastname, PDO::PARAM_STR);
+        $stmt->bindValue('first_name', $firstname, PDO::PARAM_STR);
+        $stmt->bindValue('username', $username, PDO::PARAM_STR);
+        $stmt->bindValue('passwd', $password, PDO::PARAM_STR);
+        $stmt->bindValue('email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        return $response->withRedirect('/login', 301);
     }
     catch(Exception $e){
         var_dump($e->getMessage());

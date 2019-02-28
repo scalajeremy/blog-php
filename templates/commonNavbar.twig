@@ -14,12 +14,22 @@
       <li class="nav-item">
         <a class="nav-link" href="team">Team</a>
       </li>
+      
+      {% if session.login == false %}
       <li class="nav-item">
         <a class="nav-link" href="signup">Sign Up</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="login">Log In</a>
       </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="logout">Disconnect</a>
+      </li>
+      Welcome, {{ session.username }}
+      {% endif %}
+
+      
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -27,3 +37,5 @@
     </form>
   </div>
 </nav>
+
+
