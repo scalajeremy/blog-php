@@ -11,7 +11,7 @@ CREATE TABLE users(
     first_name VARCHAR(50) NOT NULL CHECK (first_name != ''),
     username VARCHAR(50) NOT NULL CHECK (last_name != '') UNIQUE,
     passwd VARCHAR(255) NOT NULL,
-    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE, 
+    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '(([a-zA-Z0-9_\-]+\.)?)+[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE,
     permission_lvl INTEGER NOT NULL CHECK (permission_lvl >= 0 AND permission_lvl <= 2) --2 = admin, 1 = author, 0 = user
 );
 
@@ -68,7 +68,7 @@ CREATE VIEW articlesByCategories AS
     ORDER BY c.category_id;
 
 --insert users for test
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Rabujev','Jamal', 'rabujev', 'pass123', 'test@gmail.com', 2);
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Rabujev','Jamal', 'rabujev', 'pass123', 'test.test@gmail.com', 2);
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Hay','Ludivine', 'ludivine', 'pass123', 'test2@gmail.com', 2);
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Scala','Jeremy', 'thejameskiller', 'pass123', 'test3@gmail.com', 2);
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 2);
