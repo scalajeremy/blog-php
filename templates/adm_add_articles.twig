@@ -10,15 +10,15 @@
         <label for="exampleInputPassword1">Content of your article</label>
         <div class="btn-toolbar pb-2" role="toolbar" aria-label="Toolbar">
           <div class="btn-group mr-2" role="group" aria-label="Styling">
-            <button type="button" class="btn btn-danger">H1</button>
-            <button type="button" class="btn btn-danger">H2</button>
-            <button type="button" class="btn btn-danger">H3</button>
-            <button type="button" class="btn btn-danger">Bold</button>
-            <button type="button" class="btn btn-danger">Italic</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="#<b>your text</span>#">H1</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="##<b>your text</b>##">H2</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="###<b>your text</b>###">H3</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="**<b>your text</b>**">Bold</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="*<b>your text</b>*">Italic</button>
           </div>
           <div class="btn-group mr-2" role="group" aria-label="Links">
-            <button type="button" class="btn btn-danger">Link</button>
-            <button type="button" class="btn btn-danger">Media</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="[your text](your link)">Link</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="[your text](your link to media)">Media</button>
           </div>
         </div>
         <textarea type="textarea" rows="15" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Content"></textarea>
