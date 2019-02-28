@@ -1,7 +1,7 @@
 {% extends 'adm_common.twig' %}
 {% block content %}
 <div class="row" id="adm_dashboard">
-  <div class="col-sm" >
+  <div class="col-sm py-3">
     <div class="card">
       <div class="card-header">
         How much articles were created?
@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm">
+  <div class="col-sm py-3">
     <div class="card">
       <div class="card-header">
         How much users are on your blog?
@@ -23,7 +23,17 @@
       </div>
     </div>
   </div>
+<div class="w-100"></div>
+  <div class="col-sm py-3 center">
+    <div class="card">
+      <div class="card-header">
+        How much comment have you in your blog?
+      </div>
+      <div class="card-body">
+        <p class="card-text">You have 146 comments in your blog.</p>
+      </div>
+    </div>
+  </div>
 </div>
-
 
 {% endblock %}

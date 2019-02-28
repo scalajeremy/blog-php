@@ -18,18 +18,18 @@
       <div class="wrapper">
           {{ include('adm_navbar.twig') }}
 
-        <div id="content" class="">
+        <div id="content">
           <header>
             <h1>{{ pagename }}</h1>
-            <!-- Button to open and close sidebar (optional) -->
-            <button type="button" id="sidebarCollapse" class="btn btn-danger">
-              <i class="fas fa-expand-arrows-alt"></i>
-            </button>
           </header>
             <div class="container-fluid">
             {% block content %}
             {% endblock %}
-          </div>
+            </div>
+          <!-- Button to open and close sidebar (optional) -->
+          <button type="button" id="sidebarCollapse" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Toggle Menu">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </button>
         </div>
       </div>
 
@@ -55,6 +55,9 @@
                       $('a[aria-expanded=true]').attr('aria-expanded', 'false');
                   });
               });
+              $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+              })
           </script>
   </body>
 </html>

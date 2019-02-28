@@ -1,21 +1,78 @@
 {% extends 'adm_common.twig' %}
 {% block content %}
-<div class="row" id="adm_dashboard">
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Title for your article</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<form>
+    <div class="row">
+      <div class="col-sm py-3">
+        <label for="addArticleTitle">Title for your article</label>
+        <input id="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title">
+        <small  class="form-text text-muted pb-3">Choose something cool!</small>
+
+        <label for="exampleInputPassword1">Content of your article</label>
+        <div class="btn-toolbar pb-2" role="toolbar" aria-label="Toolbar">
+          <div class="btn-group mr-2" role="group" aria-label="Styling">
+            <button type="button" class="btn btn-danger">H1</button>
+            <button type="button" class="btn btn-danger">H2</button>
+            <button type="button" class="btn btn-danger">H3</button>
+            <button type="button" class="btn btn-danger">Bold</button>
+            <button type="button" class="btn btn-danger">Italic</button>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Links">
+            <button type="button" class="btn btn-danger">Link</button>
+            <button type="button" class="btn btn-danger">Media</button>
+          </div>
+        </div>
+        <textarea type="textarea" rows="15" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Content"></textarea>
+      </div>
+      <div class="col-sm py-3">
+        <label Choose>Choose a category</label>
+        <small  class="form-text text-muted pb-3">Hold CTRL for multiple selection</small>
+        <select class="custom-select" multiple size="7">
+          <option selected>Uncategorized</option>
+          <option value="1">Cat 1</option>
+          <option value="2">Cat 2</option>
+          <option value="3">Cat 3</option>
+          <option value="1">Cat 4</option>
+          <option value="2">Cat 5</option>
+          <option value="3">Cat 6</option>
+        </select>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Content of your article</label>
-      <textarea type="text" class="form-control" id="exampleInputPassword1" placeholder="Content"></textarea>
+    <div class="row">
+      <div class="col-sm py-3 mt-2 text-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
     </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <div class="row">
+      <div class="col-sm py-3">
+        <label for="addArticleTitle">Comments for this article</label>
+        <table class="table table-hover">
+          <thead class="bg-danger text-white">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">User</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Sam</td>
+              <td>Pas mal!</td>
+              <td><i class="fas fa-edit"></i></td>
+              <td><i class="fas fa-trash"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Julien</td>
+              <td>Anthem sans moi!! Sérieux??</td>
+              <td><i class="fas fa-edit"></i></td>
+              <td><i class="fas fa-trash"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
+</form>
 {% endblock %}

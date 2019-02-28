@@ -1,4 +1,58 @@
 {% extends 'adm_common.twig' %}
 {% block content %}
-Ici ça sera l'ajout et l'édition des categories
+<p>Here is a list of all your categories</p>
+<div class="row">
+  <div class="col-sm py-3">
+    <form>
+      <label for="addCategory">Add a category</label>
+      <input id="addCategory" type="text" class="form-control form-control-lg" placeholder="The name of your category">
+      <small  class="form-text text-muted pb-3">Choose something cool!</small>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+  <div class="col-sm py-3">
+    <table class="table table-hover">
+      <thead class="bg-danger text-white">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cat 1</td>
+          <td><i class="fas fa-edit"></i></td>
+          <td><i class="fas fa-trash"></i></td>
+        </tr>
+        <tr>
+          <td>Cat 2</td>
+          <td><i class="fas fa-edit"></i></td>
+          <td><i class="fas fa-trash"></i></td>
+        </tr>
+        <tr>
+          <td>Cat 3</td>
+          <td><i class="fas fa-edit"></i></td>
+          <td><i class="fas fa-trash"></i></td>
+        </tr>
+        <tr>
+          <td>Cat 4</td>
+          <td><i class="fas fa-edit"></i></td>
+          <td><i class="fas fa-trash"></i></td>
+        </tr>
+        <tr>
+          <td>Cat 5</td>
+          <td><i class="fas fa-edit"></i></td>
+          <td><i class="fas fa-trash"></i></td>
+        </tr>
+        <tr>
+          <td>Cat 6</td>
+          <td><i class="fas fa-edit"></i></td>
+          <td><i class="fas fa-trash"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 {% endblock %}
