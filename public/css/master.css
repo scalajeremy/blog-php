@@ -40,6 +40,12 @@ header {
   header h1 {
     margin: 0;
     text-align: center; }
+  header a {
+    color: white;
+    text-decoration: none; }
+  header a:hover {
+    color: white;
+    text-decoration: none; }
 
 footer {
   padding-bottom: 50px;
