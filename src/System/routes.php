@@ -53,25 +53,23 @@ $app->get('/signup', function (Request $request, Response $response, array $args
 })->setName('signup');
 
 $app->post('/login', function(Request $request,Response $response, $args) {
-  $password = password_hash($request->getParam('password'), PASSWORD_BCRYPT, ['cost'=>10]);
-  $username = $request->getParam('username');
-  $sql = 'SELECT * FROM users WHERE username = ?';
-  $stmt= $this->db->prepare($sql);
-  $stmt->execute([$username]);
-  $result = $stmt->fetchAll();
+    $password = $request->getParam('password');
+    $username = $request->getParam('username');
+    $sql = 'SELECT * FROM users WHERE username = :username';
+    $stmt= $this->db->prepare($sql);
+    $stmt->bindValue(':username', $username);
+    $stmt->execute([$username]);
+    $result = $stmt->fetchAll();
   
-  if ($password != $result[0]['passwd']) {
-    var_dump($password);
-    var_dump('--------------');
-    var_dump($result[0]['passwd']);
-    echo "Nop try again";
-    return $this->view->render($response, 'login.twig');
-  } else {
-      session_start();
-      $_SESSION['id'] = $fetch['id'];
-      $_SESSION['username'] = $username;
-      echo "Welcome " . $username . " !";
-      return $this->view->render($response, 'home.twig');
+    if (!password_verify($password, $result[0]['passwd'])) {
+        echo "Nop try again";
+        return $this->view->render($response, 'login.twig');
+    } else {
+        session_start();
+        $_SESSION['id'] = $fetch['id'];
+        $_SESSION['username'] = $username;
+        echo "Welcome " . $username . " !";
+        return $this->view->render($response, 'home.twig');
     }
 })->setName('login');
 
@@ -81,11 +79,16 @@ $app->post('/signup', function(Request $request,Response $response, $args) {
     $email = $request->getParam('email');
     $username = $request->getParam('username');
     $password = password_hash($request->getParam('password'),PASSWORD_BCRYPT, ['cost' => 10]);
-   
+     
     try{
         $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl) 
-        VALUES (?, ?, ?, ?, ?, 0)';
+        VALUES (:last_name, :first_name, :username, :passwd, :email, 0)';
         $stmt= $this->db->prepare($sql);
+        $stmt->bindValue(':last_name', $lastname);
+        $stmt->bindValue(':first_name', $firstname);
+        $stmt->bindValue(':username', $username);
+        $stmt->bindValue(':passwd', $password);
+        $stmt->bindValue(':email', $email);
         $stmt->execute(array($lastname, $firstname, $username, $password, $email));
         return $this->view->render($response, 'login.twig');
     }
