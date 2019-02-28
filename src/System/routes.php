@@ -59,8 +59,7 @@ $app->post('/login', function(Request $request,Response $response, $args) {
   $stmt= $this->db->prepare($sql);
   $stmt->execute([$username]);
   $result = $stmt->fetchAll();
-  
-  if ($password != $result[0]['passwd']) {
+  if (!password_verify($request->getParam('password'), $result[0]['passwd'])) {
     var_dump($password);
     var_dump('--------------');
     var_dump($result[0]['passwd']);
@@ -80,10 +79,10 @@ $app->post('/signup', function(Request $request,Response $response, $args) {
     $lastname = $request->getParam('lastname');
     $email = $request->getParam('email');
     $username = $request->getParam('username');
-    $password = password_hash($request->getParam('password'),PASSWORD_BCRYPT, ['cost' => 10]);
-   
+    $password = password_hash($request->getParam('password'),PASSWORD_BCRYPT, ['cost'=>10]);
+
     try{
-        $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl) 
+        $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl)
         VALUES (?, ?, ?, ?, ?, 0)';
         $stmt= $this->db->prepare($sql);
         $stmt->execute(array($lastname, $firstname, $username, $password, $email));
