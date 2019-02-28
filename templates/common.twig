@@ -2,74 +2,29 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Mot Pressés</title>
     <link rel="stylesheet" href="/css/master.css">
-    <style media="screen">
-    .tabs {
-      position: relative;
-      min-height: 200px; /* This part sucks */
-      clear: both;
-      margin: 25px 0;
-    }
-    .tab {
-      float: left;
-    }
-    .tab label {
-      background: #eee;
-      padding: 10px;
-      border: 1px solid #ccc;
-      margin-left: -1px;
-      position: relative;
-      left: 1px;
-    }
-    .tab [type=radio] {
-      display: none;
-    }
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-      position: absolute;
-      width: 400px;
-      top: 28px;
-      left: 0;
-      background: white;
-      right: 0;
-      bottom: 0;
-      padding: 20px;
-      border: 1px solid #ccc;
-    }
-    [type=radio]:checked ~ label {
-      background: white;
-      border-bottom: 1px solid white;
-      z-index: 2;
-    }
-    [type=radio]:checked ~ label ~ .content {
-      z-index: 1;
-    }
 
-    </style>
+    <title>Mots Pressés</title>
   </head>
-  <body>
-    <div class="container-fluid">
-      <div class="header-container row justify-content-center">
-        <header class="col-10">
-          <h1>Mots Pressés - HOMEPAGE</h1>
-        </header>
-      </div>
+  <body class="bg-light">
+    <div class="container bg-white">
+      <header class="bg-secondary text-white">
+        <h1><a href="home">Mots Pressés</a></h1>
+      </header>
 
-      <div class="main-container row justify-content-center">
-        <nav class="col-2">
-          {{ include('navbar.twig') }}
-        </nav>
+      {{ include('commonNavbar.twig') }}
 
-        <div class="content col-8">
-          {% block content %}
-          {% endblock %}
-        </div>
-      </div>
+      {% block content %}
+      {% endblock %}
+
+      <footer class="bg-dark text-white-50">
+        <p>Copyrights 2019 - Mots Pressés</p>
+      </footer>
     </div>
-  </body>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>
