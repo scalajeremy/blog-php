@@ -4,7 +4,7 @@
 
 
 
-<div class="grid-container">
+<div class="grid-head-articles">
   <div class="articleIDHead bg-danger text-white p-2">ID</div>
   <div class="articleTitleHead bg-danger text-white p-2">Title</div>
   <div class="articleContentHead bg-danger text-white p-2">Content</div>
@@ -12,16 +12,20 @@
   <div class="articleEditHead bg-danger text-white p-2">Edit</div>
   <div class="articleRemoveHead bg-danger text-white p-2">Remove</div>
 </div>
+
+
   {% for row in article %}
-  <div class="grid-container">
-    <div class="articleID"></div>
-    <div class="articleTitle">{{ row.title }}</div>
-    <div class="articleContent">{{ row.substring }}</div>
-    <div class="articleAuthor">{{ row.author }}</div>
-    <div class="articleEdit"></div>
-    <div class="articleRemove"></div>
-  </div>
-  {% endfor %}
+<div class="grid-articles">
+  <div class="articleID"></div>
+  <div class="articleTitle">{{ row.title }}</div>
+  <div class="articleContent">{{ row.substring }}</div>
+  <div class="articleAuthor">{{ row.author }}</div>
+  <div class="articleEdit"></div>
+  <div class="articleRemove"></div>
+</div>
+    {% endfor %}
+
+
 
 
 
