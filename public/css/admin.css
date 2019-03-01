@@ -5,6 +5,49 @@ body {
 #adm_dashboard {
   padding: 40px; }
 
+/* Article grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.4fr 1.5fr 3.1fr 0.6fr 0.2fr 0.2fr;
+  grid-template-rows: 0.2fr 1.8fr;
+  grid-template-areas: "articleIDHead articleTitleHead articleContentHead articleAuthorHead articleEditHead articleRemoveHead" "articleID articleTitle articleContent articleAuthor articleEdit articleRemove"; }
+
+.articleRemove {
+  grid-area: articleRemove; }
+
+.articleID {
+  grid-area: articleID; }
+
+.articleTitle {
+  grid-area: articleTitle; }
+
+.articleContent {
+  grid-area: articleContent; }
+
+.articleAuthor {
+  grid-area: articleAuthor; }
+
+.articleEdit {
+  grid-area: articleEdit; }
+
+.articleRemoveHead {
+  grid-area: articleRemoveHead; }
+
+.articleIDHead {
+  grid-area: articleIDHead; }
+
+.articleTitleHead {
+  grid-area: articleTitleHead; }
+
+.articleContentHead {
+  grid-area: articleContentHead; }
+
+.articleAuthorHead {
+  grid-area: articleAuthorHead; }
+
+.articleEditHead {
+  grid-area: articleEditHead; }
+
 #media {
   position: relative;
   padding: 5px; }

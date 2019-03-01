@@ -59,7 +59,7 @@ $app->get('/adm_dashboard', function (Request $request, Response $response, arra
 $app->get('/adm_articles', function (Request $request, Response $response, array $args) {
     global $twig;
     $args['pagename'] = 'Articles';
-    $sql ='SELECT title, author, content FROM articles';
+    $sql ='SELECT substring(content for 255), title, author  FROM articles';
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     $args['article'] = $stmt;
@@ -87,6 +87,10 @@ $app->get('/adm_media', function (Request $request, Response $response, array $a
 $app->get('/adm_users', function (Request $request, Response $response, array $args) {
     global $twig;
     $args['pagename'] = 'Add/Edit Users';
+    $sql ='SELECT username FROM users';
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute();
+    $args['users'] = $stmt;
     return $response->getBody()->write($twig->render('adm_users.twig', $args));
 })->setName('adm_users');
 
