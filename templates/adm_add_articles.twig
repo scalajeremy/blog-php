@@ -1,0 +1,78 @@
+{% extends 'adm_common.twig' %}
+{% block content %}
+<form>
+    <div class="row">
+      <div class="col-sm py-3">
+        <label for="addArticleTitle">Title for your article</label>
+        <input id="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title">
+        <small  class="form-text text-muted pb-3">Choose something cool!</small>
+
+        <label for="exampleInputPassword1">Content of your article</label>
+        <div class="btn-toolbar pb-2" role="toolbar" aria-label="Toolbar">
+          <div class="btn-group mr-2" role="group" aria-label="Styling">
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="#<b>your text</span>#">H1</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="##<b>your text</b>##">H2</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="###<b>your text</b>###">H3</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="**<b>your text</b>**">Bold</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="*<b>your text</b>*">Italic</button>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Links">
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="[your text](your link)">Link</button>
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-html="true" data-placement="bottom" title="[your text](your link to media)">Media</button>
+          </div>
+        </div>
+        <textarea type="textarea" rows="15" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Content"></textarea>
+      </div>
+      <div class="col-sm py-3">
+        <label Choose>Choose a category</label>
+        <small  class="form-text text-muted pb-3">Hold CTRL for multiple selection</small>
+        <select class="custom-select" multiple size="7">
+          <option selected>Uncategorized</option>
+          <option value="1">Cat 1</option>
+          <option value="2">Cat 2</option>
+          <option value="3">Cat 3</option>
+          <option value="1">Cat 4</option>
+          <option value="2">Cat 5</option>
+          <option value="3">Cat 6</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm py-3 mt-2 text-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm py-3">
+        <label for="addArticleTitle">Comments for this article</label>
+        <table class="table table-hover">
+          <thead class="bg-danger text-white">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">User</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Sam</td>
+              <td>Pas mal!</td>
+              <td><i class="fas fa-edit"></i></td>
+              <td><i class="fas fa-trash"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Julien</td>
+              <td>Anthem sans moi!! Sérieux??</td>
+              <td><i class="fas fa-edit"></i></td>
+              <td><i class="fas fa-trash"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</form>
+{% endblock %}

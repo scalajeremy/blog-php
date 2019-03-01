@@ -13,7 +13,7 @@
       <p><a href="#">Add article</a></p>
       <p><a href="#">Show articles</a></p>
       <p><a href="#">Categories</a></p>
-    <p><h3>Images Library</h3></p>=:m=::::::::::::::::::::::::::::::::::::::::::::::::
+    <p><h3>Images Library</h3></p>
       <p><a href="#">Library</a></p>
     <p><h3>Users</h3></p>
       <p><a href="#">Add user</a></p>
