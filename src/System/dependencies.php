@@ -4,7 +4,6 @@ use Psr\Container\ContainerInterface;
 
 $container = $app->getContainer();
 
-
 // set the new ones => we pass the container as param to have access to the others
 
 // twig
@@ -26,20 +25,17 @@ $container['view'] = function(ContainerInterface $container){
     });
 
     $view->getEnvironment()->addFilter($filter);
-
     // {{ monString | rot13 }}
 
     $function = new Twig_SimpleFunction('assets', [$this, 'bar']);
     $view->getEnvironment()->addFunction($function);
 
     // {{ assets() }}
-
     return $view;
 };
 
 // monolog
 $container['logger'] = function(ContainerInterface $container) {
-
     // this gives the name of your monolog alias
     $logger = new \Monolog\Logger('app_logger');
 
@@ -74,11 +70,18 @@ $container['db'] = function ($container) {
     return $pdo;
 };
 
-
 $container['post'] = function($container) {
     return new App\Models\Post($container);
 };
 
 $container['user'] = function($container) {
     return new App\Models\User($container);
+};
+
+$container['article'] = function($container){
+    return new App\Models\Article($container);
+};
+
+$container['categorie'] = function($container){
+    return new App\Models\Categorie($container);
 };

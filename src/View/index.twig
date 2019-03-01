@@ -1,26 +1,43 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+{% extends 'common.twig' %}
 
-    {% block stylesheets %}
-        {# TODO set an assets path #}
-        <link rel="stylesheet" href="">
-    {% endblock %}
-</head>
-<body>
+{% block content %}
+  <div class="main-content">
+    <div class="card-deck card-articles">
+      <div class="card">
+        <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title title">Title</h5>
+          <h6 class="card-author author">By Author</h6>
+          <p class="card-text content">Sed convallis lacinia dapibus. Curabitur bibendum auctor mauris, vel suscipit nulla. Fusce sed purus sem. Nullam pulvinar, mi blandit auctor laoreet, enim justo suscipit turpis, vel hendrerit felis nisl vel est. Quisque metus purus, accumsan vitae turpis in, cursus rutrum dui. Donec non elit iaculis, scelerisque mi vitae, fermentum lorem. Duis imperdiet a sem nec euismod. Vestibulum tortor dui, consequat quis justo vel, aliquet maximus eros. Mauris posuere a elit at iaculis. Maecenas pretium dui ante, quis lobortis ex hendrerit ut. Ut mauris justo, placerat sed tortor eget, dictum tempus lectus. Maecenas vehicula eleifend risus, sed vestibulum felis. Fusce feugiat tempus lorem ut vehicula. Pellentesque urna risus, condimentum eget tortor rhoncus, auctor dapibus magna. Aenean vitae tempor erat. Morbi sagittis maximus mi nec dictum.</p>
+          <a href="#" class="btn btn-dark">Read More</a>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title title">Title</h5>
+          <h6 class="card-author author">By Author</h6>
+          <p class="card-text content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dolor ex, euismod sed varius non, faucibus lacinia risus. Curabitur eu tempor urna. Proin eget interdum lectus. Donec vitae tincidunt erat. Donec et velit vitae augue rutrum rhoncus mollis sed mi. Vivamus porta ipsum at ex varius interdum. Maecenas vel condimentum metus, id facilisis sapien. Phasellus molestie eu nunc quis mollis.</p>
+          <a href="#" class="btn btn-dark">Read More</a>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title title">Title</h5>
+          <h6 class="card-author author">By Author</h6>
+          <p class="card-text content">Vestibulum quis turpis ac massa faucibus cursus. Nullam lacinia turpis sem. Proin placerat maximus eleifend. Aliquam erat volutpat. Nullam tristique sed tortor et dapibus. Suspendisse suscipit eu ante vitae pellentesque. Donec ac justo urna. Pellentesque ligula nunc, feugiat ac nisi ut, scelerisque faucibus risus. Fusce ac gravida ante, quis sagittis ipsum.</p>
+          <a href="#" class="btn btn-dark">Read More</a>
+        </div>
+      </div>
+    </div>
 
-{% block navigation %}
-
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-end">
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+      </ul>
+    </nav>
+  </div>
 {% endblock %}
-
-{% block body %}
-
-{% endblock %}
-
-</body>
-</html>

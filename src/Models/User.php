@@ -7,6 +7,7 @@ class User {
         $this->container = $container;
     }
 
+    //check if the user is in database
     public function authenticate($username, $password) : bool {
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
@@ -29,6 +30,7 @@ class User {
         }
     }
 
+    //add a user into the database
     public function addUser($firstname, $lastname, $email, $username, $password) : bool{
         $firstname = htmlspecialchars($firstname);
         $lastname = htmlspecialchars($lastname);
@@ -53,6 +55,7 @@ class User {
         }
     }
 
+    //edit a user in the database
     public function editUser($firstname, $lastname, $email, $username, $password) : bool{
         $firstname = htmlspecialchars($firstname);
         $lastname = htmlspecialchars($lastname);
@@ -61,8 +64,7 @@ class User {
         $password = password_hash(htmlspecialchars($password),PASSWORD_BCRYPT, ['cost' => 10]);
 
         try{
-            $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl) 
-            VALUES (:last_name, :first_name, :username, :passwd, :email, 0)';
+            $sql = '';
             $stmt= $this->db->prepare($sql);
             $stmt->bindValue('last_name', $lastname, PDO::PARAM_STR);
             $stmt->bindValue('first_name', $firstname, PDO::PARAM_STR);
@@ -77,16 +79,19 @@ class User {
         }
     }
 
+    //delete the user in the database, (change a flag, not a real deletion)
     public function deleteUser() : book{
         return false;
     }
 
+    //check if the user didn't change his session to be someone else
+    // session secure / login.username.permission.time() => sha-256
     public function check() : bool{
         return true;
-        // session secure / login.username.permission.time() => sha-256
     }
 
-    public function toAdmin($username) : bool{
-
+    //change de permission lvl of a user
+    public function changePermission($username, $permission) : bool{
+        return false;
     }
 }

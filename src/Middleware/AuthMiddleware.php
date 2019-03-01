@@ -5,7 +5,7 @@ use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class FlashMiddleware{
+class AuthMiddleware{
     /** @var ContainerInterface $container */
     private $container;
     private $level;

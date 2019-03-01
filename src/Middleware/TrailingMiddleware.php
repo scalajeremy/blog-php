@@ -5,9 +5,7 @@ namespace App\Middleware;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class TrailingMiddleware
-{
-
+class TrailingMiddleware{
     /**
      * __invoke
      * This middleware will remove the last '/' trailing slash in the uri
@@ -16,8 +14,7 @@ class TrailingMiddleware
      * @param  mixed $next
      * @return Response
      */
-    public function __invoke(Request $request, Response $response, $next)
-    {
+    public function __invoke(Request $request, Response $response, $next){
         $uri = $request->getUri();
         $path = $uri->getPath();
 
