@@ -20,8 +20,8 @@ CREATE TABLE articles(
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     date_publication TIMESTAMP NOT NULL,
-    autor INTEGER NOT NULL,
-    FOREIGN KEY (autor) REFERENCES users (user_id)
+    author INTEGER NOT NULL,
+    FOREIGN KEY (author) REFERENCES users (user_id)
 );
 
 CREATE TABLE images(
@@ -34,9 +34,9 @@ CREATE TABLE comments(
     comment_id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
     date_comment TIMESTAMP NOT NULL,
-    autor INTEGER NOT NULL,
+    author INTEGER NOT NULL,
     article INTEGER NOT NULL,
-    FOREIGN KEY (autor) REFERENCES users (user_id),
+    FOREIGN KEY (author) REFERENCES users (user_id),
     FOREIGN KEY (article) REFERENCES articles (article_id)
 );
 
@@ -57,14 +57,14 @@ CREATE TABLE list_of_categories(
 CREATE VIEW commentsByArticles AS
 	SELECT u.username AS "Username", c.content AS "Content", c.date_comment AS "Date", a.article_id AS "Id_article"
 	FROM articles a, comments c, users u
-	WHERE c.article = a.article_id AND u.user_id = c.autor
+	WHERE c.article = a.article_id AND u.user_id = c.author
     ORDER BY a.article_id;
 
 --view to get all articles by categories
 CREATE VIEW articlesByCategories AS
     SELECT c.category_id AS "Cat_Id", a.title AS "Title", a.content AS "Content", u.username AS "Username"
     FROM categories c, articles a, users u, list_of_categories lc
-    WHERE c.category_id = lc.category AND u.user_id = a.autor AND a.article_id = lc.article
+    WHERE c.category_id = lc.category AND u.user_id = a.author AND a.article_id = lc.article
     ORDER BY c.category_id;
 
 --insert users for test
@@ -74,25 +74,26 @@ INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 2);
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Bove', 'Alex', 'daddy', 'pass123', 'test5@gmail.com', 1);
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Degueldre','Samuel','hackzorr','pass123','test6@gmail.com', 0);
+INSErt iNTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('admin', 'admin', 'admin', '$2y$10$LSU1yKLvvcVDVZ5H2RI45.pLve4.VXm7D4tpz22uMWjqlB.OHYHwG', 'admin@admin.com', 2)
 
 --insert articles for test
-INSERT INTO articles(title, content, date_publication, autor) VALUES ('Narwhals', 'They are the jedi of the sea', NOW(), 4);
-INSERT INTO articles(title, content, date_publication, autor) VALUES ('Meditation at work', 'Sleep all day', NOW(), 1);
-INSERT INTO articles(title, content, date_publication, autor) VALUES ('Narcissistic Personality Disorder', 'The hallmarks of
+INSERT INTO articles(title, content, date_publication, author) VALUES ('Narwhals', 'They are the jedi of the sea', NOW(), 4);
+INSERT INTO articles(title, content, date_publication, author) VALUES ('Meditation at work', 'Sleep all day', NOW(), 1);
+INSERT INTO articles(title, content, date_publication, author) VALUES ('Narcissistic Personality Disorder', 'The hallmarks of
     Narcissistic Personality Disorder (NPD) are grandiosity, a lack of empathy for other people,
     and a need for admiration. People with this condition are frequently described as arrogant,
     self-centered, manipulative, and demanding. They may also concentrate on grandiose fantasies
     (e.g. their own success, beauty, brilliance) and may be convinced that they deserve special treatment.
     These characteristics typically begin in early adulthood and must be consistently evident in multiple contexts,
     such as at work and in relationships. ', NOW(), 2);
-INSERT INTO articles(title, content, date_publication, autor) VALUES ('WOW', 'ma bite', NOW(), 5);
+INSERT INTO articles(title, content, date_publication, author) VALUES ('WOW', 'ma bite', NOW(), 5);
 
 --insert comments for test
-INSERT INTO comments(content, date_comment, autor, article) VALUES ('Super comment', NOW(), 1, 3);
-INSERT INTO comments(content, date_comment, autor, article) VALUES ('Wow', NOW(), 2, 1);
-INSERT INTO comments(content, date_comment, autor, article) VALUES ('Amazing', NOW(), 3, 1);
-INSERT INTO comments(content, date_comment, autor, article) VALUES ('Very effective', NOW(), 4, 2);
-INSERT INTO comments(content, date_comment, autor, article) VALUES ('Nicely written', NOW(), 4, 3);
+INSERT INTO comments(content, date_comment, author, article) VALUES ('Super comment', NOW(), 1, 3);
+INSERT INTO comments(content, date_comment, author, article) VALUES ('Wow', NOW(), 2, 1);
+INSERT INTO comments(content, date_comment, author, article) VALUES ('Amazing', NOW(), 3, 1);
+INSERT INTO comments(content, date_comment, author, article) VALUES ('Very effective', NOW(), 4, 2);
+INSERT INTO comments(content, date_comment, author, article) VALUES ('Nicely written', NOW(), 4, 3);
 
 --insert categories for test
 INSERT INTO categories(cat_name) VALUES('Meditation');

@@ -9,7 +9,6 @@
   "scripts": {
     "dev": "gulp"
   },
-  "author": "Bicky",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^4.0.0",
