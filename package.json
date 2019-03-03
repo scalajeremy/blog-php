@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Crud application using slim-twig",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "dev": "gulp"
   },

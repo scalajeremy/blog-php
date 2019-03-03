@@ -64,7 +64,7 @@ class User {
         $password = password_hash(htmlspecialchars($password),PASSWORD_BCRYPT, ['cost' => 10]);
 
         try{
-            $sql = '';
+            $sql = ''; //alter table to do
             $stmt= $this->db->prepare($sql);
             $stmt->bindValue('last_name', $lastname, PDO::PARAM_STR);
             $stmt->bindValue('first_name', $firstname, PDO::PARAM_STR);

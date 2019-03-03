@@ -31,11 +31,10 @@ class FlashMiddleware
     {
 
         if(!empty($_SESSION['flash'])){
-            $this->container->view->getEnvironment()->addGlobal('flash', $_SESSION['flash']);
+            $this->container->get('view')->getEnvironment()->addGlobal('flash', $_SESSION['flash']);
             unset($_SESSION['flash']);
         }
 
-        return  $next($request, $response);
-
+        return $next($request, $response);
     }
 }

@@ -1,5 +1,4 @@
 <?php
 // add the middleware for all the application
 $app->add(new App\Middleware\TrailingMiddleware());
-$app->add(new App\Middleware\FlashMiddleware($container));
-//$app->add(new App\Middleware\AuthMiddleware($container, $level));
+$app->add(new \App\Middleware\FlashMiddleware($container));
