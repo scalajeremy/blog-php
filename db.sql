@@ -74,7 +74,7 @@ INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 2);
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Bove', 'Alex', 'daddy', 'pass123', 'test5@gmail.com', 1);
 INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Degueldre','Samuel','hackzorr','pass123','test6@gmail.com', 0);
-INSErt iNTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('admin', 'admin', 'admin', '$2y$10$LSU1yKLvvcVDVZ5H2RI45.pLve4.VXm7D4tpz22uMWjqlB.OHYHwG', 'admin@admin.com', 2)
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('admin', 'admin', 'admin', '$2y$10$LSU1yKLvvcVDVZ5H2RI45.pLve4.VXm7D4tpz22uMWjqlB.OHYHwG', 'admin@admin.com', 2);
 
 --insert articles for test
 INSERT INTO articles(title, content, date_publication, author) VALUES ('Narwhals', 'They are the jedi of the sea', NOW(), 4);

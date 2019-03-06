@@ -21,6 +21,11 @@ class AuthController extends Controller{
             $_SESSION['flash']['danger'] = 'Tu t\'es viandé';
             return $response->withRedirect($this->router->pathFor('app.login'), 301);
         }
-        return $response;
+    }
+
+    public function logoutAction(Request $request, Response $response, array $args) : Response{
+        session_unset();
+        //$_SESSION['auth'] = ['login' => false ];
+        return $response->withRedirect($this->router->pathFor('app.index'), 301);
     }
 }
