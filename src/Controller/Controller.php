@@ -3,8 +3,7 @@ namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
 
-class Controller
-{
+class Controller{
 
     private $container;
 
@@ -12,8 +11,7 @@ class Controller
      * Controller constructor.
      * @param ContainerInterface $container
      */
-    public function __construct(ContainerInterface $container)
-    {
+    public function __construct(ContainerInterface $container){
         $this->container = $container;
     }
 

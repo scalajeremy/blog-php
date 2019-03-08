@@ -15,11 +15,13 @@ class SignUpController extends Controller{
         $lastname = $request->getParam('lastname');
         $email = $request->getParam('email');
         $username = $request->getParam('username');
-        $password = $resquest->getParam('password');
-        
+        $password = $request->getParam('password');
+
         if($this->user->addUser($firstname, $lastname, $email, $username, $password)){
+            var_dump($email);
             return $response->withRedirect($this->router->pathFor('app.login'),301);
         }else{
+            var_dump($password);
             $_SESSION['flash']['danger'] = 'Problem while signing up.';
             return $response->withRedirect($this->router->pathFor('app.signup'),301);
         }

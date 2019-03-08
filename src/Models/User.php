@@ -1,6 +1,5 @@
 <?php
-
-class User {
+class User{
     private $container;
 
     public function __constructor($container) { 

@@ -1,12 +1,13 @@
 <?php
 // load all the containers
 use Psr\Container\ContainerInterface;
+use App\Models\User;
+use App\Models\Article;
+use App\Models\Categorie;
 
 $container = $app->getContainer();
 
-
 // set the new ones => we pass the container as param to have access to the others
-
 // twig
 $container['view'] = function($container){
     $view = new \Slim\Views\Twig(dirname(__DIR__).'/View', [
@@ -48,6 +49,18 @@ $container['db'] = function (ContainerInterface $container) {
     $capsule->setAsGlobal();
     $capsule->bootEloquent();
     return $capsule;
+};
+
+$container['user'] = function (ContainerInterface $container) {
+    return new User($container);
+};
+
+$container['article'] = function (ContainerInterface $conatiner){
+    return new Article($container);
+};
+
+$container['categorie'] = function (ContainerInterface $conatiner){
+    return new Categorie($container);
 };
 
 
