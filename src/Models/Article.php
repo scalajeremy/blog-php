@@ -1,9 +1,12 @@
 <?php
+namespace App\Models;
+
+use Slim\Container;
 
 class Article {
     private $container;
 
-    public function __constructor($container) { 
+    public function __construct(Container $container) { 
         $this->container = $container;
     }
 

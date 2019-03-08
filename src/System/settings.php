@@ -11,6 +11,7 @@ return [
     'database' => [
         'driver' => 'pgsql',
         'host' => 'localhost',
+        'port' => '5000',
         'database' => 'test',
         'username' => 'root',
         'password' => 'root',

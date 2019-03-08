@@ -1,8 +1,12 @@
 <?php
+namespace App\Models;
+
+use Slim\Container;
+
 class User{
     private $container;
 
-    public function __constructor($container) { 
+    public function __construct(Container $container) { 
         $this->container = $container;
     }
 
@@ -13,9 +17,9 @@ class User{
         
         $sql = 'SELECT passwd, permission_lvl FROM users WHERE username = :username';
         $stmt= $this->container->db->prepare($sql);
-        $stmt->bindValue('username', $username, PDO::PARAM_STR);
+        $stmt->bindValue('username', $username, \PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if (!password_verify($password, $result['passwd'])) {
             return false;
@@ -36,17 +40,18 @@ class User{
         $email = htmlspecialchars($email);
         $username = htmlspecialchars($username);
         $password = password_hash(htmlspecialchars($password),PASSWORD_BCRYPT, ['cost' => 10]);
-        
+        var_dump($this->container->db);
         try{
             $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl) 
             VALUES (:last_name, :first_name, :username, :passwd, :email, 0)';
-            $stmt= $this->db->prepare($sql);
-            $stmt->bindValue('last_name', $lastname, PDO::PARAM_STR);
-            $stmt->bindValue('first_name', $firstname, PDO::PARAM_STR);
-            $stmt->bindValue('username', $username, PDO::PARAM_STR);
-            $stmt->bindValue('passwd', $password, PDO::PARAM_STR);
-            $stmt->bindValue('email', $email, PDO::PARAM_STR);
-            $stmt->execute();
+            $stmt = $this->container->db->prepare($sql);
+            $req = $stmt->execute([
+                'last_name' => $lastname,
+                'first_name' => $firstname,
+                'username' => $username,
+                'passwd' => $password,
+                'email' => $email
+            ]);
             return true;
         }
         catch(Exception $e){
@@ -64,7 +69,7 @@ class User{
 
         try{
             $sql = ''; //alter table to do
-            $stmt= $this->db->prepare($sql);
+            $stmt= $this->container->db->prepare($sql);
             $stmt->bindValue('last_name', $lastname, PDO::PARAM_STR);
             $stmt->bindValue('first_name', $firstname, PDO::PARAM_STR);
             $stmt->bindValue('username', $username, PDO::PARAM_STR);

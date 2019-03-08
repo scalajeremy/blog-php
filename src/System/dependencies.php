@@ -20,6 +20,7 @@ $container['view'] = function($container){
 
     $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
     $view->addExtension(new Slim\Views\TwigExtension($router, $uri));
+    $view->getEnvironment()->addGlobal('session', $_SESSION);
 
     return $view;
 };
@@ -42,24 +43,28 @@ $container['logger'] = function(ContainerInterface $container) {
     return $logger;
 };
 
-// Service factory for the ORM :: eloquent / laravel's ORM
-$container['db'] = function (ContainerInterface $container) {
-    $capsule = new \Illuminate\Database\Capsule\Manager;
-    $capsule->addConnection($container['settings']['database']);
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-    return $capsule;
+// container to connect to the db
+$container['db'] = function (ContainerInterface $container) {    
+    $cf = $container['database'];
+    var_dump($cf['driver'].':host=' . $cf['host'].';port='.$cf['port'].';dbname='.$cf['database'], $cf['username'], $cf['password']);
+    $pdo = new PDO($cf['driver'].':host=' . $cf['host'].';port='.$cf['port'].';dbname='.$cf['database'], $cf['username'], $cf['password']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
+    return $pdo;
 };
 
+//container for user class
 $container['user'] = function (ContainerInterface $container) {
     return new User($container);
 };
 
-$container['article'] = function (ContainerInterface $conatiner){
+//container for article class
+$container['article'] = function (ContainerInterface $container){
     return new Article($container);
 };
 
-$container['categorie'] = function (ContainerInterface $conatiner){
+//container for categorie class
+$container['categorie'] = function (ContainerInterface $container){
     return new Categorie($container);
 };
 
