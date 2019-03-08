@@ -46,7 +46,6 @@ $container['logger'] = function(ContainerInterface $container) {
 // container to connect to the db
 $container['db'] = function (ContainerInterface $container) {    
     $cf = $container['database'];
-    var_dump($cf['driver'].':host=' . $cf['host'].';port='.$cf['port'].';dbname='.$cf['database'], $cf['username'], $cf['password']);
     $pdo = new PDO($cf['driver'].':host=' . $cf['host'].';port='.$cf['port'].';dbname='.$cf['database'], $cf['username'], $cf['password']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
