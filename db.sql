@@ -11,8 +11,9 @@ CREATE TABLE users(
     first_name VARCHAR(50) NOT NULL CHECK (first_name != ''),
     username VARCHAR(50) NOT NULL CHECK (last_name != '') UNIQUE,
     passwd VARCHAR(255) NOT NULL,
-    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '(([a-zA-Z0-9_\-]+\.)?)+[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE,
-    permission_lvl INTEGER NOT NULL CHECK (permission_lvl >= 0 AND permission_lvl <= 2) --2 = admin, 1 = author, 0 = user
+    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '(([a-zA-Z0-9_\-]+\.)?)+[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE, 
+    permission_lvl INTEGER NOT NULL CHECK (permission_lvl >= 0 AND permission_lvl <= 2), --2 = admin, 1 = author, 0 = user
+    is_active blog.boolean NOT NULL
 );
 
 CREATE TABLE articles(
@@ -68,13 +69,13 @@ CREATE VIEW articlesByCategories AS
     ORDER BY c.category_id;
 
 --insert users for test
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Rabujev','Jamal', 'rabujev', 'pass123', 'test.test@gmail.com', 2);
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Hay','Ludivine', 'ludivine', 'pass123', 'test2@gmail.com', 2);
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Scala','Jeremy', 'thejameskiller', 'pass123', 'test3@gmail.com', 2);
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 2);
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Bove', 'Alex', 'daddy', 'pass123', 'test5@gmail.com', 1);
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('Degueldre','Samuel','hackzorr','pass123','test6@gmail.com', 0);
-INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl) VALUES ('admin', 'admin', 'admin', '$2y$10$LSU1yKLvvcVDVZ5H2RI45.pLve4.VXm7D4tpz22uMWjqlB.OHYHwG', 'admin@admin.com', 2);
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl, is_active) VALUES ('Rabujev','Jamal', 'rabujev', 'pass123', 'test.test@gmail.com', 2, 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl, is_active) VALUES ('Hay','Ludivine', 'ludivine', 'pass123', 'test2@gmail.com', 2, 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl, is_active) VALUES ('Scala','Jeremy', 'thejameskiller', 'pass123', 'test3@gmail.com', 2, 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl, is_active) VALUES ('Janssens','Thibaut', 'bicky', 'pass123', 'test4@gmail.com', 2, 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl, is_active) VALUES ('Bove', 'Alex', 'daddy', 'pass123', 'test5@gmail.com', 1, 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl, is_active) VALUES ('Degueldre','Samuel','hackzorr','pass123','test6@gmail.com', 0, 'True');
+INSERT INTO users(last_name, first_name, username, passwd, email, permission_lvl, is_active) VALUES ('admin', 'admin', 'admin', '$2y$10$LSU1yKLvvcVDVZ5H2RI45.pLve4.VXm7D4tpz22uMWjqlB.OHYHwG', 'admin@admin.com', 2, 'True');
 
 --insert articles for test
 INSERT INTO articles(title, content, date_publication, author) VALUES ('Narwhals', 'They are the jedi of the sea', NOW(), 4);
@@ -107,3 +108,13 @@ INSERT INTO list_of_categories(article, category) VALUES (1, 2);
 INSERT INTO list_of_categories(article, category) VALUES (2, 1);
 INSERT INTO list_of_categories(article, category) VALUES (3, 2);
 INSERT INTO list_of_categories(article, category) VALUES (4, 4);
+
+--drop everthing
+--drop view commentsbyarticles;
+--drop view articlesbycategories;
+--drop table comments;
+--drop table images;
+--drop table list_of_categories;
+--drop table articles;
+--drop table categories;
+--drop table users;
