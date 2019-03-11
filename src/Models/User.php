@@ -135,4 +135,13 @@ class User{
       return $result;
     }
 
+    public function displayNumUsers(){
+      $sql = 'SELECT COUNT(*) FROM users';
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+      return $result;
+    }
+
 }

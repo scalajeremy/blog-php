@@ -42,4 +42,13 @@ class Article {
       return $result;
     }
 
+    public function displayNumComments(){
+      $sql = 'SELECT COUNT(*) FROM comments';
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+      return $result;
+    }
+
 }

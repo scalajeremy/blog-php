@@ -7,7 +7,9 @@ use Slim\Http\Response;
 class AdminController extends Controller{
   public function dashboard(Request $request, Response $response, array $args) {
     $displayNumArticles = $this->article->displayNumArticles();
-    return $this->view->render($response, 'admin/adm_dashboard.twig', array("numArticles" => $displayNumArticles));
+    $displayNumUsers = $this->user->displayNumUsers();
+    $displayNumComments = $this->article->displayNumComments();
+    return $this->view->render($response, 'admin/adm_dashboard.twig', array("numArticles"=>$displayNumArticles, "numUsers"=>$displayNumUsers, "numComments"=>$displayNumComments));
   }
   public function addArticles(Request $request, Response $response, array $args) {
     $displayCategorie = $this->categorie->displayCategorie();
