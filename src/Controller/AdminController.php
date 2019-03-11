@@ -22,6 +22,7 @@ class AdminController extends Controller{
     return $this->view->render($response, 'admin/adm_media.twig');
   }
   public function users(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'admin/adm_users.twig');
+    $displayUsers = $this->user->displayUsers();
+    return $this->view->render($response, 'admin/adm_users.twig', array("users"=>$displayUsers));
   }
 }

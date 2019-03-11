@@ -30,50 +30,23 @@
           <th scope="col">Delete</th>
         </tr>
       </thead>
+
+
       <tbody>
+        {% for user in users %}
         <tr>
-          <th scope="row">1</th>
-          <td>Jeremy</td>
-          <td>Yes</td>
+          <td>{{ user['user_id'] }}</td>
+          <td>{{ user['username'] }}</td>
+          <td>{{ user['permission_lvl'] }}</td>
           <td><i class="fas fa-edit"></i></td>
           <td><i class="fas fa-trash"></i></td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Bicky</td>
-          <td>Yes</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Ludivine</td>
-          <td>Yes</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Jamal</td>
-          <td>Yes</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td>Sam</td>
-          <td>Nope</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">6</th>
-          <td>Julien</td>
-          <td>Certainly not!</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
+        {% endfor %}
       </tbody>
+
+
+
+
     </table>
   </div>
 </div>

@@ -123,4 +123,16 @@ class User{
           return false;
       }
   }
+
+    // Display users
+    public function displayUsers(){
+      $sql = 'SELECT u.user_id, u.username, u.permission_lvl
+      FROM users u';
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetchAll();
+
+      return $result;
+    }
+
 }
