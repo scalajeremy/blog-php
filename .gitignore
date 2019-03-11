@@ -1,0 +1,10 @@
+#IDE ignore 
+
+/.vscode/
+/.idea/
+
+# composer ignore
+composer.phar
+composer.lock
+/vendor/
+/node_modules/
