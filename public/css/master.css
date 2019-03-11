@@ -54,6 +54,10 @@ footer {
     margin: 0;
     text-align: center; }
 
+.welcome-user {
+  padding-bottom: 8px;
+  padding-top: 8px; }
+
 .page-link,
 .page-link:hover {
   color: #353940; }

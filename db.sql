@@ -11,7 +11,7 @@ CREATE TABLE users(
     first_name VARCHAR(50) NOT NULL CHECK (first_name != ''),
     username VARCHAR(50) NOT NULL CHECK (last_name != '') UNIQUE,
     passwd VARCHAR(255) NOT NULL,
-    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '(([a-zA-Z0-9_\-]+\.)?)+[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE, 
+    email VARCHAR (50) NOT NULL CHECK (email SIMILAR TO '(([a-zA-Z0-9_\-]+\.)?)+[a-zA-Z0-9_\-]+@([a-zA-Z0-9_\-]+\.[a-z]{2,4})') UNIQUE,
     permission_lvl INTEGER NOT NULL CHECK (permission_lvl >= 0 AND permission_lvl <= 2) --2 = admin, 1 = author, 0 = user
 );
 
