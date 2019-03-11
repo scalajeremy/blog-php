@@ -51,6 +51,9 @@ $app->get('/adm_cat', AdminController::class.':categories')->setName('adm.catego
 $app->get('/adm_media', AdminController::class.':media')->setName('adm_media');
 
 $app->get('/adm_users', AdminController::class.':users')->setName('adm_users');
+
+$app->post('/adm_users', AdminController::class.':usersAction')->setName('adm_users');
+
 // --------- END OF ADMIND PART ---------
 /*
 
