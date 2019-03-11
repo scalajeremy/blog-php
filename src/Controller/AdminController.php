@@ -26,17 +26,17 @@ class AdminController extends Controller{
   }
   ////////////
   public function usersAction(Request $request, Response $response, array $args) : Response{
-      $firstname = $request->getParam('firstname');
-      $lastname = $request->getParam('lastname');
-      $email = $request->getParam('email');
-      $username = $request->getParam('username');
-      $password = $request->getParam('password');
+      $firstname = $request->getParam('addFirstname');
+      $lastname = $request->getParam('addLastname');
+      $email = $request->getParam('addEmail');
+      $username = $request->getParam('addUsername');
+      $password = $request->getParam('addPasswd');
 
       if($this->user->addUser($firstname, $lastname, $email, $username, $password)){
-          return $response->withRedirect($this->router->pathFor('app.login'),301);
+          return $response->withRedirect($this->router->pathFor('adm_users'),301);
       }else{
           $_SESSION['flash']['danger'] = 'Problem while signing up.';
-          return $response->withRedirect($this->router->pathFor('app.signup'),301);
+          return $response->withRedirect($this->router->pathFor('adm_users'),301);
       }
       return $response;
   }
