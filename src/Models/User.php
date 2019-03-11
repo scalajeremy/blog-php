@@ -6,7 +6,7 @@ use Slim\Container;
 class User{
     private $container;
 
-    public function __construct(Container $container) { 
+    public function __construct(Container $container) {
         $this->container = $container;
     }
 
@@ -14,7 +14,7 @@ class User{
     public function authenticate($username, $password) : bool {
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
-        
+
         $sql = 'SELECT passwd, permission_lvl FROM users WHERE username = :username';
         $stmt= $this->container->db->prepare($sql);
         $stmt->bindValue('username', $username, \PDO::PARAM_STR);
@@ -42,7 +42,7 @@ class User{
         $password = password_hash(htmlspecialchars($password),PASSWORD_BCRYPT, ['cost' => 10]);
         var_dump($this->container->db);
         try{
-            $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl) 
+            $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl)
             VALUES (:last_name, :first_name, :username, :passwd, :email, 0)';
             $stmt = $this->container->db->prepare($sql);
             $req = $stmt->execute([

@@ -12,7 +12,8 @@ class AdminController extends Controller{
     return $this->view->render($response, 'admin/adm_add_articles.twig');
   }
   public function articles(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'admin/adm_articles.twig');
+    $displayArticles = $this->article->displayArticle();
+    return $this->view->render($response, 'admin/adm_articles.twig', ['articles'=>$displayArticles]);
   }
   public function categories(Request $request, Response $response, array $args) {
     return $this->view->render($response, 'admin/adm_cat.twig');
