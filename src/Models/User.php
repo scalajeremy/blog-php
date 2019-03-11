@@ -107,6 +107,7 @@ class User{
     //change de permission lvl of a user
     // 11/3/2019 12h22 : this function should work now, Jam
     public function changePermission($username, $permission) : bool{
+
       $username = htmlspecialchars($username);
       $permission = htmlspecialchars($permission);
 
