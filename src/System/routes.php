@@ -3,12 +3,13 @@
 use App\Controller\MainController;
 use App\Controller\AuthController;
 use App\Controller\SignUpController;
+use App\Controller\AdminController;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 // this is a route directly implemented
 // --------- COMMON PART OF THE WEBSITE ---------
-//Home 
+//Home
 $app->get('/', MainController::class.':index')->setName('app.index');
 
 $app->get('/home', MainController::class.':index')->setName('app.index');
@@ -39,7 +40,17 @@ $app->post('/signup', SignUpController::class.':signupAction')->setName('app.sig
 // --------- END OF AUTHOR ---------
 
 // --------- ADMIN PART ---------
+$app->get('/adm_dashboard', AdminController::class.':dashboard')->setName('adm.dashboard');
 
+$app->get('/adm_add_articles', AdminController::class.':addArticles')->setName('adm.addArticles');
+
+$app->get('/adm_articles', AdminController::class.':articles')->setName('adm.articles');
+
+$app->get('/adm_cat', AdminController::class.':categories')->setName('adm.categories');
+
+$app->get('/adm_media', AdminController::class.':media')->setName('adm_media');
+
+$app->get('/adm_users', AdminController::class.':users')->setName('adm_users');
 // --------- END OF ADMIND PART ---------
 /*
 
