@@ -39,7 +39,8 @@ header {
   padding-top: 20px; }
   header h1 {
     margin: 0;
-    text-align: center; }
+    text-align: center;
+    font-family: 'Gloria Hallelujah', cursive; }
   header a {
     color: white;
     text-decoration: none; }
@@ -53,6 +54,10 @@ footer {
   footer p {
     margin: 0;
     text-align: center; }
+
+.welcome-user {
+  padding-bottom: 8px;
+  padding-top: 8px; }
 
 .page-link,
 .page-link:hover {
