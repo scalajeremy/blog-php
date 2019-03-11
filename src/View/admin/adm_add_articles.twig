@@ -27,13 +27,9 @@
         <label Choose>Choose a category</label>
         <small  class="form-text text-muted pb-3">Hold CTRL for multiple selection</small>
         <select class="custom-select" multiple size="7">
-          <option selected>Uncategorized</option>
-          <option value="1">Cat 1</option>
-          <option value="2">Cat 2</option>
-          <option value="3">Cat 3</option>
-          <option value="1">Cat 4</option>
-          <option value="2">Cat 5</option>
-          <option value="3">Cat 6</option>
+          {% for categorie in categories %}
+          <option>{{ categorie['cat_name'] }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>

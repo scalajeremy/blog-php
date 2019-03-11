@@ -6,7 +6,7 @@ use Slim\Container;
 class Categorie {
     private $container;
 
-    public function __construct(Container $container) { 
+    public function __construct(Container $container) {
         $this->container = $container;
     }
 
@@ -23,6 +23,12 @@ class Categorie {
     }
 
     public function displayCategorie(){
-        
+      $sql = 'SELECT cat_name
+      FROM categories';
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetchAll();
+
+      return $result;
     }
 }

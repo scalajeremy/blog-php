@@ -6,17 +6,20 @@ use Slim\Http\Response;
 
 class AdminController extends Controller{
   public function dashboard(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'admin/adm_dashboard.twig');
+    $displayNumArticles = $this->article->displayNumArticles();
+    return $this->view->render($response, 'admin/adm_dashboard.twig', array("numArticles" => $displayNumArticles));
   }
   public function addArticles(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'admin/adm_add_articles.twig');
+    $displayCategorie = $this->categorie->displayCategorie();
+    return $this->view->render($response, 'admin/adm_add_articles.twig', array("categories"=>$displayCategorie));
   }
   public function articles(Request $request, Response $response, array $args) {
     $displayArticles = $this->article->displayArticle();
     return $this->view->render($response, 'admin/adm_articles.twig', array("articles"=>$displayArticles));
   }
   public function categories(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'admin/adm_cat.twig');
+    $displayCategorie = $this->categorie->displayCategorie();
+    return $this->view->render($response, 'admin/adm_cat.twig', array("categories"=>$displayCategorie));
   }
   public function media(Request $request, Response $response, array $args) {
     return $this->view->render($response, 'admin/adm_media.twig');

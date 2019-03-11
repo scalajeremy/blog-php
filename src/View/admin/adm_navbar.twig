@@ -3,7 +3,7 @@
           <h3><a href="common">Mots Pressés</a></h3>
         </div>
         <ul class="list-unstyled components">
-          <p>Welcome back %user%</p>
+          <p>Welcome back, {{ session.auth.username }}</p>
           <li>
             <a href="/adm_dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
           </li>

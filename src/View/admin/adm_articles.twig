@@ -13,8 +13,8 @@
       <th scope="col">Delete</th>
     </tr>
   </thead>
-  {% for article in articles %}
   <tbody>
+      {% for article in articles %}
     <tr>
       <td>{{ article['article_id'] }}</td>
       <td>{{ article['title'] }}</td>
@@ -24,8 +24,8 @@
       <td><i class="fas fa-edit"></i></td>
       <td><i class="fas fa-trash"></i></td>
     </tr>
+      {% endfor %}
   </tbody>
-  {% endfor %}
 </table>
 
 

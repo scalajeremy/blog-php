@@ -20,36 +20,13 @@
         </tr>
       </thead>
       <tbody>
+        {% for categorie in categories %}
         <tr>
-          <td>Cat 1</td>
+          <td>{{ categorie['cat_name'] }}</td>
           <td><i class="fas fa-edit"></i></td>
           <td><i class="fas fa-trash"></i></td>
         </tr>
-        <tr>
-          <td>Cat 2</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <td>Cat 3</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <td>Cat 4</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <td>Cat 5</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
-        <tr>
-          <td>Cat 6</td>
-          <td><i class="fas fa-edit"></i></td>
-          <td><i class="fas fa-trash"></i></td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>

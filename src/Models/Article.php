@@ -32,4 +32,14 @@ class Article {
     public function deleteArticle() : bool{
         return false;
     }
+
+    public function displayNumArticles(){
+      $sql = 'SELECT COUNT(*) FROM articles';
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+      return $result;
+    }
+
 }
