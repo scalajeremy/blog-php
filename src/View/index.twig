@@ -4,13 +4,15 @@
   <div class="main-content">
     <div class="row m-0 justify-content-center">
       {% for article in articles %}
-      <div class="card card-articles col-lg-4">
-        <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title title">{{ article['title'] }}</h5>
-          <h6 class="card-author author">By {{ article['username'] }}</h6>
-          <p class="card-text content">{{ article['content'] }}</p>
-          <a href="#" class="btn btn-dark">Read More</a>
+      <div class="card-container col-lg-6">
+        <div class="card card-articles">
+          <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title title">{{ article['title'] }}</h5>
+            <h6 class="card-author author">By {{ article['username'] }}</h6>
+            <p class="card-text content">{{ article['content'] }}</p>
+            <a href="#" class="btn btn-dark">Read More</a>
+          </div>
         </div>
       </div>
       {% endfor %}
