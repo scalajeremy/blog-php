@@ -48,13 +48,16 @@ $app->get('/adm_articles', AdminController::class.':articles')->setName('adm.art
 
 $app->get('/adm_cat', AdminController::class.':categories')->setName('adm.categories');
 
+$app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm.categories');
+
 $app->get('/adm_media', AdminController::class.':media')->setName('adm_media');
 
 $app->get('/adm_users', AdminController::class.':users')->setName('adm_users');
 
 $app->post('/adm_users', AdminController::class.':usersAction')->setName('adm_users');
-////////////// Jam : ma partie 10h47, 12/03, sur boutons edit and del users dans le dashboard adm
+
 $app->get('/adm_users/delete_{username}', AdminController::class.':userDelete')->setName('adm_users');
+
 ////////////
 // --------- END OF ADMIND PART ---------
 /*
