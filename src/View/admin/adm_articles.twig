@@ -20,7 +20,7 @@
       <td>{{ article['article_id'] }}</td>
       <td>{{ article['title'] }}</td>
       <td>{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</td>
-      <td></td>
+      <td>{{ article['cat_name'] }}</td>
       <td>{{ article['username'] }}</td>
       <td>{{ article['date_publication']|slice(0, 10) }}</td>
       <td><i class="fas fa-edit"></i></td>
