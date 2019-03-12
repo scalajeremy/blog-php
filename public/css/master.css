@@ -16,16 +16,17 @@ body {
   padding-right: 15px;
   padding-top: 20px; }
 
-.card-articles h6 {
-  font-style: italic; }
-
-.card-articles .card-text {
-  height: 200px;
-  overflow: hidden; }
-
-.card-articles img {
-  max-height: 230px;
-  object-fit: cover; }
+.card-articles {
+  margin-top: 5px;
+  padding: 10px; }
+  .card-articles h6 {
+    font-style: italic; }
+  .card-articles .card-text {
+    height: 200px;
+    overflow: hidden; }
+  .card-articles img {
+    max-height: 230px;
+    object-fit: cover; }
 
 .pagination {
   margin-bottom: 0;

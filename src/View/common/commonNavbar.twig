@@ -18,7 +18,7 @@
 
     <ul class="navbar-nav lg-float-right">
       {% if session.auth.login  %}
-      <li class="nav-item text-white-50 welcome-user px-lg-2">
+      <li class="nav-item text-white-50 welcome-user px-lg-2 font-weight-bold">
           Welcome, {{ session.auth.username }}
       </li>
         {% if session.auth.permission == 2 %}
