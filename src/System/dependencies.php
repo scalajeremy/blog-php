@@ -66,3 +66,15 @@ $container['article'] = function (ContainerInterface $container){
 $container['categorie'] = function (ContainerInterface $container){
     return new Categorie($container);
 };
+
+// Register provider
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
+};
+
+//Override the default Not Found Handler
+$container['notFoundHandler'] = function ($c) {
+    return function ($request, $response) use ($c) {
+        return $c['view']->render($response->withStatus(404), 'common/error.twig');
+    };
+};

@@ -82,7 +82,8 @@ footer {
   padding: 10px; }
 
 .card-article {
-  padding-bottom: 20px; }
+  padding-top: 20px;
+  margin: 0; }
   .card-article img {
     max-height: 300px;
     object-fit: cover; }
