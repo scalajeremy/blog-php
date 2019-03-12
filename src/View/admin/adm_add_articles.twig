@@ -4,10 +4,10 @@
     <div class="row">
       <div class="col-sm py-3">
         <label for="addArticleTitle">Title for your article</label>
-        <input id="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title">
+        <input id="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title" required>
         <small  class="form-text text-muted pb-3">Choose something cool!</small>
 
-        <label for="exampleInputPassword1">Content of your article</label>
+        <label for="addArticleContent">Content of your article</label>
         <div class="btn-toolbar pb-2" role="toolbar" aria-label="Toolbar">
           <div class="btn-group mr-2" role="group" aria-label="Styling">
             <button type="button" class="btn btn-danger">H1</button>
@@ -21,16 +21,17 @@
             <button type="button" class="btn btn-danger">Media</button>
           </div>
         </div>
-        <textarea type="textarea" rows="15" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Content"></textarea>
+        <textarea type="textarea" rows="15" class="form-control form-control-sm" id="addArticleContent" placeholder="Content" required></textarea>
       </div>
-      <div class="col-sm py-3">
-        <label Choose>Choose a category</label>
-        <small  class="form-text text-muted pb-3">Hold CTRL for multiple selection</small>
-        <select class="custom-select" multiple size="7">
-          {% for categorie in categories %}
-          <option>{{ categorie['cat_name'] }}</option>
-          {% endfor %}
-        </select>
+      <div class="col-md-auto py-3">
+        <label>Choose a category</label>
+        <div class="container-fluid background-white">
+          <select class="custom-select">
+            {% for categorie in categories %}
+              <option value="cat_{{ categorie['category_id'] }}">{{ categorie['cat_name'] }}</option>
+            {% endfor %}
+          </select>
+        </div>
       </div>
     </div>
     <div class="row">

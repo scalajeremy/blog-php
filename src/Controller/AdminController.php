@@ -23,6 +23,14 @@ class AdminController extends Controller{
     $displayCategorie = $this->categorie->displayCategorie();
     return $this->view->render($response, 'admin/adm_cat.twig', array("categories"=>$displayCategorie));
   }
+  public function categoriesAction(Request $request, Response $response, array $args) : Response{
+    $addCategory = $request->getParam('addCategory');
+    if($this->categorie->addCategorie($addCategory)){
+      return $response->withRedirect($this->router->pathFor('adm.categories'),301);
+    }else{
+      return $response->withRedirect($this->router->pathFor('adm.categories'),301);
+    }
+  }
   public function media(Request $request, Response $response, array $args) {
     return $this->view->render($response, 'admin/adm_media.twig');
   }

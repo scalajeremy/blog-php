@@ -1,11 +1,25 @@
 {% extends 'admin/adm_common.twig' %}
 {% block content %}
-<p>Here is a list of all your categories</p>
+<script type="text/javascript">
+function check() {
+    stringLength = document.getElementById('addCategory').value.length;
+    if (stringLength >= 50) {
+         document.getElementById('warning').innerText = "Maximum characters are 50"
+    } else {
+        document.getElementById('warning').innerText = ""
+    }
+}
+</script>
+
+
+
+<p>Here is all of your categories</p>
 <div class="row">
   <div class="col-sm py-3">
-    <form>
+    <form novalidate method="post">
       <label for="addCategory">Add a category</label>
-      <input id="addCategory" type="text" class="form-control form-control-lg" placeholder="The name of your category">
+      <input name="addCategory" id="addCategory" type="text" class="form-control form-control-lg" placeholder="The name of your category" maxlength="50" required>
+      <div id=warning></div>
       <small  class="form-text text-muted pb-3">Choose something cool!</small>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>

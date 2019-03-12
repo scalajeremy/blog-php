@@ -54,6 +54,7 @@ $app->get('/adm_users', AdminController::class.':users')->setName('adm_users');
 
 $app->post('/adm_users', AdminController::class.':usersAction')->setName('adm_users');
 
+$app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm.categories');
 // --------- END OF ADMIND PART ---------
 /*
 
