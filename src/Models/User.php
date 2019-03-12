@@ -15,7 +15,7 @@ class User{
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
 
-        $sql = 'SELECT passwd, permission_lvl FROM users WHERE username = :username';
+        $sql = "SELECT passwd, permission_lvl FROM users WHERE username = :username AND is_active = 'True'";
         $stmt= $this->container->db->prepare($sql);
         $stmt->bindValue('username', $username, \PDO::PARAM_STR);
         $stmt->execute();
@@ -41,8 +41,8 @@ class User{
         $username = htmlspecialchars($username);
         $password = password_hash(htmlspecialchars($password),PASSWORD_BCRYPT, ['cost' => 10]);
         try{
-            $sql = 'INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl)
-            VALUES (:last_name, :first_name, :username, :passwd, :email, 0)';
+            $sql = "INSERT INTO users (last_name, first_name, username, passwd, email, permission_lvl, is_active)
+            VALUES (:last_name, :first_name, :username, :passwd, :email, 0, 'True')";
             $stmt = $this->container->db->prepare($sql);
             $req = $stmt->execute([
                 'last_name' => $lastname,
@@ -126,8 +126,9 @@ class User{
 
     // Display users
     public function displayUsers(){
-      $sql = 'SELECT u.user_id, u.username, u.permission_lvl
-      FROM users u';
+      $sql = "SELECT u.user_id, u.username, u.permission_lvl
+      FROM users u
+      WHERE u.is_active = 'True'";
       $stmt= $this->container->db->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetchAll();
@@ -136,7 +137,7 @@ class User{
     }
 
     public function displayNumUsers(){
-      $sql = 'SELECT COUNT(*) FROM users';
+      $sql = "SELECT COUNT(*) FROM users WHERE is_active = 'True'";
       $stmt= $this->container->db->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetch(\PDO::FETCH_ASSOC);
