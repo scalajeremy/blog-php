@@ -10,8 +10,24 @@ class Article {
         $this->container = $container;
     }
 
-    public function addArticle() : bool{
-        return false;
+    public function addArticle($addTitle, $addContent) : bool{
+        $addTitle = htmlspecialchars($addTitle);
+        $addContent = htmlspecialchars($addContent);
+        // $addAuthor = htmlspecialchars($addAuthor);
+        try{
+          $sql = "INSERT INTO articles (title, content, date_publication, author)
+          VALUES (:title, :content, NOW(), :author)";
+          $stmt = $this->container->db->prepare($sql);
+          $req = $stmt->execute([
+            'title' => $addTitle,
+            'content' => $addContent,
+            'author' => $_SESSION["auth"]["user_id"]
+          ]);
+            return true;
+        }
+        catch(Exception $e){
+            return false;
+        }
     }
 
     public function displayArticle(){

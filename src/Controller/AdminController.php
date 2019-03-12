@@ -19,6 +19,18 @@ class AdminController extends Controller{
     $displayArticles = $this->article->displayArticle();
     return $this->view->render($response, 'admin/adm_articles.twig', array("articles"=>$displayArticles));
   }
+  public function articlesAction(Request $request, Response $response, array $args) : Response{
+
+    $addTitle = $request->getParam('addArticleTitle');
+var_dump($addTitle);
+    $addContent = $request->getParam('addArticleContent');
+    if($this->article->addArticle($addTitle, $addContent)){
+      return $response->withRedirect($this->router->pathFor('adm.articles'),301);
+    }else{
+      return $response->withRedirect($this->router->pathFor('adm.articles'),301);
+    }
+  }
+
   public function categories(Request $request, Response $response, array $args) {
     $displayCategorie = $this->categorie->displayCategorie();
     return $this->view->render($response, 'admin/adm_cat.twig', array("categories"=>$displayCategorie));

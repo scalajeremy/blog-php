@@ -46,6 +46,8 @@ $app->get('/adm_add_articles', AdminController::class.':addArticles')->setName('
 
 $app->get('/adm_articles', AdminController::class.':articles')->setName('adm.articles');
 
+$app->post('/adm_articles', AdminController::class.':articlesAction')->setName('adm.articles');
+
 $app->get('/adm_cat', AdminController::class.':categories')->setName('adm.categories');
 
 $app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm.categories');

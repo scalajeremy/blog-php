@@ -7,6 +7,7 @@
       <th scope="col">#</th>
       <th scope="col">Title</th>
       <th scope="col">Content (preview)</th>
+      <th scope="col">Category</th>
       <th scope="col">Author</th>
       <th scope="col">Date</th>
       <th scope="col">Edit</th>
@@ -19,6 +20,7 @@
       <td>{{ article['article_id'] }}</td>
       <td>{{ article['title'] }}</td>
       <td>{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</td>
+      <td></td>
       <td>{{ article['username'] }}</td>
       <td>{{ article['date_publication']|slice(0, 10) }}</td>
       <td><i class="fas fa-edit"></i></td>

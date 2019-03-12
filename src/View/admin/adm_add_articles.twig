@@ -1,12 +1,11 @@
 {% extends 'admin/adm_common.twig' %}
 {% block content %}
-<form>
+<form method="post" action='adm_articles'>
     <div class="row">
       <div class="col-sm py-3">
         <label for="addArticleTitle">Title for your article</label>
-        <input id="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title" required>
+        <input id="addArticleTitle" name="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title" required>
         <small  class="form-text text-muted pb-3">Choose something cool!</small>
-
         <label for="addArticleContent">Content of your article</label>
         <div class="btn-toolbar pb-2" role="toolbar" aria-label="Toolbar">
           <div class="btn-group mr-2" role="group" aria-label="Styling">
@@ -21,7 +20,7 @@
             <button type="button" class="btn btn-danger">Media</button>
           </div>
         </div>
-        <textarea type="textarea" rows="15" class="form-control form-control-sm" id="addArticleContent" placeholder="Content" required></textarea>
+        <textarea type="textarea" rows="15" class="form-control form-control-sm" id="addArticleContent" name="addArticleContent" placeholder="Content" required></textarea>
       </div>
       <div class="col-md-auto py-3">
         <label>Choose a category</label>
@@ -39,6 +38,7 @@
         <button type="submit" class="btn btn-primary">Save</button>
       </div>
     </div>
+</form>
     <div class="row">
       <div class="col-sm py-3">
         <label for="addArticleTitle">Comments for this article</label>
@@ -68,5 +68,5 @@
         </table>
       </div>
     </div>
-</form>
+
 {% endblock %}

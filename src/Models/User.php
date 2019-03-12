@@ -15,7 +15,7 @@ class User{
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
 
-        $sql = "SELECT passwd, permission_lvl FROM users WHERE username = :username AND is_active = 'True'";
+        $sql = "SELECT user_id, passwd, permission_lvl FROM users WHERE username = :username AND is_active = 'True'";
         $stmt= $this->container->db->prepare($sql);
         $stmt->bindValue('username', $username, \PDO::PARAM_STR);
         $stmt->execute();
@@ -27,6 +27,7 @@ class User{
             $_SESSION['auth'] = [
                 'login' => true,
                 'username' => $username,
+                'user_id' => $result['user_id'],
                 'permission' => $result['permission_lvl'],
             ];
             return true;
