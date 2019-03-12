@@ -56,14 +56,14 @@ CREATE TABLE list_of_categories(
 
 --view to get all comment by articles
 CREATE VIEW commentsByArticles AS
-	SELECT u.username AS "Username", c.content AS "Content", c.date_comment AS "Date", a.article_id AS "Id_article"
+	SELECT u.username , c.content , c.date_comment , a.article_id
 	FROM articles a, comments c, users u
 	WHERE c.article = a.article_id AND u.user_id = c.author
     ORDER BY a.article_id;
 
 --view to get all articles by categories
 CREATE VIEW articlesByCategories AS
-    SELECT c.cat_name AS "Cat_Name", c.category_id AS "Cat_Id", a.article_id AS "Art_Id", a.title AS "Title", a.content AS "Content", u.username AS "Username"
+    SELECT c.cat_name , c.category_id , a.article_id , a.title , a.content , u.username 
     FROM categories c, articles a, users u, list_of_categories lc
     WHERE c.category_id = lc.category AND u.user_id = a.author AND a.article_id = lc.article
     ORDER BY c.category_id;
