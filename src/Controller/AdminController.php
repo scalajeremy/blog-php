@@ -55,4 +55,16 @@ class AdminController extends Controller{
       return $response;
   }
 ////////////
+
+public function userDelete(Request $request, Response $response, array $args) : Response{
+    $username = $args['username'];
+    if($this->user->deleteUser($username)){
+        return $response->withRedirect($this->router->pathFor('adm_users'),301);
+    }else{
+        $_SESSION['flash']['danger'] = 'Problem while signing up.';
+        return $response->withRedirect($this->router->pathFor('adm_users'),301);
+    }
+    return $response;
+}
+
 }

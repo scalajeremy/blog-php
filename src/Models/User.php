@@ -83,13 +83,13 @@ class User{
     }
 
     //delete the user in the database, (change a flag, not a real deletion)
-    public function deleteUser($username) : book{
+    public function deleteUser($username) : bool{
       $username = htmlspecialchars($username);
 
       try{
-          $sql = 'UPDATE users SET is_active = "False" WHERE username = :username'; //alter table to do
+          $sql = "UPDATE users SET is_active = 'False' WHERE username = :username";
           $stmt= $this->container->db->prepare($sql);
-          $stmt->bindValue('username', $username, PDO::PARAM_STR);
+          $stmt->bindValue('username', $username, \PDO::PARAM_STR);
           $stmt->execute();
           return true;
       }

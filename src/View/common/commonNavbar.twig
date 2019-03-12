@@ -18,11 +18,16 @@
 
     <ul class="navbar-nav lg-float-right">
       {% if session.auth.login  %}
+      <li class="nav-item text-white-50 welcome-user px-lg-2 font-weight-bold">
+          Welcome, {{ session.auth.username }}
+      </li>
+        {% if session.auth.permission == 2 %}
+        <li class="nav-item">
+          <a class="nav-link" href="adm_dashboard">Go to Dashboard</a>
+        </li>
+        {% endif %}
       <li class="nav-item">
         <a class="nav-link" href="logout">Log out</a>
-      </li>
-      <li class="nav-item text-white-50 welcome-user pl-lg-2">
-          Welcome, {{ session.auth.username }}
       </li>
       {% else %}
       <li class="nav-item">
