@@ -53,7 +53,9 @@ $app->get('/adm_media', AdminController::class.':media')->setName('adm_media');
 $app->get('/adm_users', AdminController::class.':users')->setName('adm_users');
 
 $app->post('/adm_users', AdminController::class.':usersAction')->setName('adm_users');
-
+////////////// Jam : ma partie 10h47, 12/03, sur boutons edit and del users dans le dashboard adm
+$app->get('/adm_users/delete_{username}', AdminController::class.':userDelete')->setName('adm_users');
+////////////
 // --------- END OF ADMIND PART ---------
 /*
 
