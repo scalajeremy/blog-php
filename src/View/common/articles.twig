@@ -9,9 +9,14 @@
       <div class="card-body">
         <h2 class="card-title title">{{ article['title'] }}</h2>
         <h5 class="card-author author">By {{ article['username'] }}</h5>
-        <p class="card-text content">{{ article['content'] }}</p>
+        <div class="card-text content">{{ article['content'] }}</div>
         <h6 class="card-date date">{{ article['date_publication']|slice(0, 10) }}</h6>
       </div>
+      <div class="card-footer comments-container">
+        <h5>Comments</h5>
+        <p>No comments yet</p>
+        <button type="button" class="btn btn-secondary">New comment</button>
+    </div>
     </div>
   </div>
   {% endfor %}

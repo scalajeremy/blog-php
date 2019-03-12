@@ -9,12 +9,8 @@ body {
 .container {
   padding: 0; }
 
-.card-deck {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 20px; }
+.team-member-container {
+  margin-top: 15px; }
 
 .card-container {
   margin-top: 15px; }
