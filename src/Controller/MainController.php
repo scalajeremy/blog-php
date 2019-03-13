@@ -16,6 +16,7 @@ class MainController extends Controller{
 
     public function articles(Request $request, Response $response, array $args) : Response {
         $displayArticles = $this->article->displayArticle();
-        return $this->view->render($response, 'common/articles.twig', array("articles"=>$displayArticles));
+        $displayCategorie = $this->categorie->displayCategorie();
+        return $this->view->render($response, 'common/articles.twig', array("articles"=>$displayArticles, "categories"=>$displayCategorie));
     }
 }

@@ -2,6 +2,15 @@
 
 {% block content %}
 <div class="main-article">
+  <div class="category-list mx-0 row justify-content-center">
+    <select class="custom-select mt-3 mx-sm-2 col-md-6" id="inlineFormCustomSelectPref">
+      <option selected>Choose a category</option>
+      {% for categorie in categories %}
+      <option value="1">{{ categorie['cat_name'] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
   {% for article in articles %}
   <div class="card-deck card-article">
     <div class="card">
