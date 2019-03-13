@@ -60,6 +60,10 @@ $app->post('/adm_users', AdminController::class.':usersAction')->setName('adm_us
 
 $app->get('/adm_users/delete_{username}', AdminController::class.':userDelete')->setName('adm_users');
 
+$app->get('/adm_users/edit_{id}', AdminController::class.':fillUserEdit')->setName('adm_users_edit');
+
+$app->post('/adm_users/edit_{id}', AdminController::class.':userEdit')->setName('adm_users');
+
 ////////////
 // --------- END OF ADMIND PART ---------
 /*

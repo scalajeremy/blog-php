@@ -60,27 +60,54 @@ class User{
     }
 
     //edit a user in the database
-    public function editUser($firstname, $lastname, $email, $username, $password) : bool{
+    public function editUser($id, $firstname, $lastname, $email, $username, $password, $permission) : bool{
+        $id = htmlspecialchars($id);
         $firstname = htmlspecialchars($firstname);
         $lastname = htmlspecialchars($lastname);
         $email = htmlspecialchars($email);
         $username = htmlspecialchars($username);
+        if (empty($password)) {
+          $passwordEmpty = true;
+        }
         $password = password_hash(htmlspecialchars($password),PASSWORD_BCRYPT, ['cost' => 10]);
+        $permission = htmlspecialchars($permission);
 
+        if (!$passwordEmpty) {
         try{
-            $sql = 'UPDATE users SET username = :username, first_name = :firstname, last_name = :lastname, passwd = :password, email = :email  WHERE username = :username'; //alter table to do
+            $sql = 'UPDATE users SET username = :username, first_name = :firstname, last_name = :lastname, passwd = :password, email = :email, permission_lvl = :permission WHERE user_id = :id'; //alter table to do
             $stmt= $this->container->db->prepare($sql);
-            $stmt->bindValue('last_name', $lastname, PDO::PARAM_STR);
-            $stmt->bindValue('first_name', $firstname, PDO::PARAM_STR);
-            $stmt->bindValue('username', $username, PDO::PARAM_STR);
-            $stmt->bindValue('passwd', $password, PDO::PARAM_STR);
-            $stmt->bindValue('email', $email, PDO::PARAM_STR);
+            $stmt->bindValue('id', $id, \PDO::PARAM_INT);
+            $stmt->bindValue('lastname', $lastname, \PDO::PARAM_STR);
+            $stmt->bindValue('firstname', $firstname, \PDO::PARAM_STR);
+            $stmt->bindValue('username', $username, \PDO::PARAM_STR);
+            $stmt->bindValue('password', $password, \PDO::PARAM_STR);
+            $stmt->bindValue('email', $email, \PDO::PARAM_STR);
+            $stmt->bindValue('permission', $permission, \PDO::PARAM_INT);  //replaced STR with INT, not sure tho, Jam.
             $stmt->execute();
             return true;
         }
         catch(Exception $e){
             return false;
         }
+      }
+      else {
+        try{
+            $sql = 'UPDATE users SET username = :username, first_name = :firstname, last_name = :lastname, email = :email, permission_lvl = :permission WHERE user_id = :id'; //alter table to do
+            $stmt= $this->container->db->prepare($sql);
+            $stmt->bindValue('id', $id, \PDO::PARAM_INT);
+            $stmt->bindValue('lastname', $lastname, \PDO::PARAM_STR);
+            $stmt->bindValue('firstname', $firstname, \PDO::PARAM_STR);
+            $stmt->bindValue('username', $username, \PDO::PARAM_STR);
+            $stmt->bindValue('email', $email, \PDO::PARAM_STR);
+            $stmt->bindValue('permission', $permission, \PDO::PARAM_INT);  //replaced STR with INT, not sure tho, Jam.
+            $stmt->execute();
+            return true;
+        }
+        catch(Exception $e){
+            return false;
+        }
+
+      }
     }
 
     //delete the user in the database, (change a flag, not a real deletion)
@@ -105,25 +132,25 @@ class User{
         return true;
     }
 
-    //change de permission lvl of a user
+    //change de permission lvl of a user, useless because editUser does that already.
     // 11/3/2019 12h22 : this function should work now, Jam
-    public function changePermission($username, $permission) : bool{
-
-      $username = htmlspecialchars($username);
-      $permission = htmlspecialchars($permission);
-
-      try{
-          $sql = "UPDATE users SET permission_lvl = :permission WHERE username = :username"; //alter table to do
-          $stmt= $this->container->db->prepare($sql);
-          $stmt->bindValue('username', $username, PDO::PARAM_STR);
-          $stmt->bindValue('permission_lvl', $permission, PDO::PARAM_INT);  //replaced STR with INT, not sure tho, Jam.
-          $stmt->execute();
-          return true;
-      }
-      catch(Exception $e){
-          return false;
-      }
-  }
+  //   public function changePermission($username, $permission) : bool{
+  //
+  //     $username = htmlspecialchars($username);
+  //     $permission = htmlspecialchars($permission);
+  //
+  //     try{
+  //         $sql = "UPDATE users SET permission_lvl = :permission WHERE username = :username"; //alter table to do
+  //         $stmt= $this->container->db->prepare($sql);
+  //         $stmt->bindValue('username', $username, PDO::PARAM_STR);
+  //         $stmt->bindValue('permission_lvl', $permission, PDO::PARAM_INT);  //replaced STR with INT, not sure tho, Jam.
+  //         $stmt->execute();
+  //         return true;
+  //     }
+  //     catch(Exception $e){
+  //         return false;
+  //     }
+  // }
 
     // Display users
     public function displayUsers(){
@@ -143,6 +170,17 @@ class User{
       $stmt->execute();
       $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
+      return $result;
+    }
+
+//New Jam : 13/03/2019 11H27
+    public function getUserInfoById($id){
+      $id = htmlspecialchars($id);
+      $sql = "SELECT user_id, last_name, first_name, username, passwd, email, permission_lvl FROM users WHERE user_id = :id";
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->bindValue('id', $id, \PDO::PARAM_INT);
+      $stmt->execute();
+      $result = $stmt->fetchAll();
       return $result;
     }
 
