@@ -6,7 +6,8 @@
     <select class="custom-select mt-3 mx-sm-2 col-md-6" id="inlineFormCustomSelectPref">
       <option selected>Choose a category</option>
       {% for categorie in categories %}
-      <option value="{{ categorie['cat_name'] }}">{{ categorie['cat_name'] }}</option>
+      {% set i = categorie['category_id'] %}
+      <option value="{{ i }}">{{ categorie['cat_name'] }}</option>
       {% endfor %}
     </select>
   </div>
