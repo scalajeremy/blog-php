@@ -13,6 +13,7 @@ class Article {
     public function addArticle($addTitle, $addContent) : bool{
         $addTitle = htmlspecialchars($addTitle);
         $addContent = htmlspecialchars($addContent);
+        // $addCategory = htmlspecialchars($addCategory);
         // $addAuthor = htmlspecialchars($addAuthor);
         try{
           $sql = "INSERT INTO articles (title, content, date_publication, author)
@@ -31,9 +32,12 @@ class Article {
     }
 
     public function displayArticle(){
-      $sql = 'SELECT ar.article_id, ar.title, ar.content, ar.date_publication, ar.author, u.username
+      $sql = 'SELECT ar.title, ar.content, ar.date_publication, ar.author, u.username
       FROM articles ar, users u
+
       WHERE ar.author = u.user_id';
+      // $sql = 'SELECT Cat_Name FROM articlesbycategories';
+
       $stmt= $this->container->db->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetchAll();

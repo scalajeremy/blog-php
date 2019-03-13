@@ -1,39 +1,46 @@
 {% extends 'admin/adm_common.twig' %}
 {% block content %}
+<h2>Dashboard</h2>
 <div class="row" id="adm_dashboard">
-  <div class="col-sm py-3">
+  <div class="col-sm py-3 px-5">
     <div class="card">
-      <div class="card-header">
-        How much articles were created?
-      </div>
+      <div class="card-header"><i class="fas fa-file-alt"></i> How much articles were created?</div>
       <div class="card-body">
         <p class="card-text">You have {{ numArticles.count }} articles in your blog.</p>
-        <a href="/adm_add_articles" class="btn btn-primary">Go write some more!</a>
+        <a href="/adm_add_articles" class="btn btn-danger">Go write some more!</a>
       </div>
     </div>
   </div>
-  <div class="col-sm py-3">
+  <div class="col-sm py-3 px-5">
     <div class="card">
-      <div class="card-header">
-        How much users are on your blog?
-      </div>
+      <div class="card-header"><i class="fas fa-users"></i> How much users are on your blog?</div>
       <div class="card-body">
         <p class="card-text">You have {{ numUsers.count }} users in your blog.</p>
-        <a href="/adm_users" class="btn btn-primary">Manage them</a>
+        <a href="/adm_users" class="btn btn-danger">Manage them</a>
       </div>
     </div>
   </div>
-<div class="w-100"></div>
-  <div class="col-sm py-3 center">
+</div>
+<div class="row" id="adm_dashboard">
+  <div class="col-sm py-3 px-5">
     <div class="card">
-      <div class="card-header">
-        How much comment have you in your blog?
+      <div class="card-header"><i class="fas fa-comments"></i> How much categories have you in your blog?</div>
+      <div class="card-body">
+        <p class="card-text">You have {{ numCat.count }} categories in your blog.</p>
+        <a href="/adm_cat" class="btn btn-danger">Show them to me!</a>
       </div>
+    </div>
+  </div>
+  <div class="col-sm py-3 px-5">
+    <div class="card">
+      <div class="card-header"><i class="fas fa-comments"></i> How much comment have you in your blog?</div>
       <div class="card-body">
         <p class="card-text">You have {{ numComments.count }} comments in your blog.</p>
       </div>
     </div>
   </div>
+  </div>
 </div>
+
 
 {% endblock %}

@@ -9,7 +9,8 @@ class AdminController extends Controller{
     $displayNumArticles = $this->article->displayNumArticles();
     $displayNumUsers = $this->user->displayNumUsers();
     $displayNumComments = $this->article->displayNumComments();
-    return $this->view->render($response, 'admin/adm_dashboard.twig', array("numArticles"=>$displayNumArticles, "numUsers"=>$displayNumUsers, "numComments"=>$displayNumComments));
+    $displayNumCat = $this->categorie->displayNumCat();
+    return $this->view->render($response, 'admin/adm_dashboard.twig', array("numArticles"=>$displayNumArticles, "numCat"=>$displayNumCat, "numUsers"=>$displayNumUsers, "numComments"=>$displayNumComments));
   }
   public function addArticles(Request $request, Response $response, array $args) {
     $displayCategorie = $this->categorie->displayCategorie();
@@ -22,8 +23,8 @@ class AdminController extends Controller{
   public function articlesAction(Request $request, Response $response, array $args) : Response{
 
     $addTitle = $request->getParam('addArticleTitle');
-var_dump($addTitle);
-    $addContent = $request->getParam('addArticleContent');
+    // $addCategory = $request->getParam('addArticleCategory');
+    $addContent = $editor_data = $_POST[ 'content' ];
     if($this->article->addArticle($addTitle, $addContent)){
       return $response->withRedirect($this->router->pathFor('adm.articles'),301);
     }else{

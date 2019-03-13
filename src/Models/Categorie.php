@@ -24,6 +24,15 @@ class Categorie {
             return false;
         }
     }
+    // Request for number of categories in db
+    public function displayNumCat(){
+      $sql = 'SELECT COUNT(*) FROM categories';
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+      return $result;
+    }
     // Request for edit a category
     public function editCategorie() : bool{
         return false;
