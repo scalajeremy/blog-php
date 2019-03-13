@@ -2,7 +2,8 @@
 
 {% block content %}
   <div class="main-content">
-    {% for article in articles|reverse %}
+    {% set i = 0 %}
+    {% for article in articles|reverse if i < 5 %}
     <div class="card-deck card-article">
       <div class="card">
         <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">
@@ -19,6 +20,7 @@
       </div>
       </div>
     </div>
+    {% set i = i + 1 %}
     {% endfor %}
 
     <nav aria-label="Page navigation">
