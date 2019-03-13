@@ -1,0 +1,23 @@
+{% extends 'admin/adm_common.twig' %}
+{% block content %}
+<div class="row">
+  <div class="col-sm py-4">
+    <p>Edit user</p>
+    <form action="edit_{{ fillUserEditInfo[0]['user_id'] }}" method="post">
+      <input id="addUsername" name="addUsername" type="text" class="form-control form-control-lg my-2" placeholder="Username" value="{{ fillUserEditInfo[0]['username'] }}" required>
+      <input id="addEmail" name="addEmail" type="email" class="form-control form-control-lg my-2" placeholder="Email" value="{{ fillUserEditInfo[0]['email'] }}" required>
+      <input id="addPasswd" name="addPasswd" class="form-control form-control-lg my-2" placeholder="Password">
+      <input id="addPermission" name="addPermission" class="form-control form-control-lg my-2" placeholder="Permission Level" value="{{ fillUserEditInfo[0]['permission_lvl'] }}" required>
+      <div class="form-row">
+        <div class="col">
+          <input id="addFirstname" name="addFirstname" type="text" class="form-control form-control-lg my-2" placeholder="Firstname" value="{{ fillUserEditInfo[0]['first_name'] }}" required>
+        </div>
+        <div class="col">
+          <input id="addLastname" name="addLastname" type="text" class="form-control form-control-lg my-2" placeholder="Lastname" value="{{ fillUserEditInfo[0]['last_name'] }}" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
