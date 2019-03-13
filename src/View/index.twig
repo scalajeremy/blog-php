@@ -2,7 +2,7 @@
 
 {% block content %}
   <div class="main-content">
-    {% for article in articles %}
+    {% for article in articles|reverse %}
     <div class="card-deck card-article">
       <div class="card">
         <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">

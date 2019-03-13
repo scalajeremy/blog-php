@@ -12,7 +12,7 @@
     </select>
   </div>
 
-  {% for article in articles %}
+  {% for article in articles|reverse %}
   <div class="card-deck card-article">
     <div class="card">
       <img class="card-img-top" src="./images/test.jpg" alt="Card image cap">
@@ -26,7 +26,7 @@
         <h5>Comments</h5>
         <p>No comments yet</p>
         <button type="button" class="btn btn-secondary">New comment</button>
-    </div>
+      </div>
     </div>
   </div>
   {% endfor %}
