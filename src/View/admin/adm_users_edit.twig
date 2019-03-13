@@ -1,13 +1,15 @@
 {% extends 'admin/adm_common.twig' %}
 {% block content %}
+<h2>Manage Users</h2>
 <div class="row">
-  <div class="col-sm py-4">
+  <div class="col-sm py-3">
     <p>Edit user</p>
     <form action="edit_{{ fillUserEditInfo[0]['user_id'] }}" method="post">
       <input id="addUsername" name="addUsername" type="text" class="form-control form-control-lg my-2" placeholder="Username" value="{{ fillUserEditInfo[0]['username'] }}" required>
       <input id="addEmail" name="addEmail" type="email" class="form-control form-control-lg my-2" placeholder="Email" value="{{ fillUserEditInfo[0]['email'] }}" required>
       <input id="addPasswd" name="addPasswd" class="form-control form-control-lg my-2" placeholder="Password">
       <input id="addPermission" name="addPermission" class="form-control form-control-lg my-2" placeholder="Permission Level" value="{{ fillUserEditInfo[0]['permission_lvl'] }}" required>
+      <small  class="form-text text-muted pb-3">0=default, 1=author &  <span class="text-danger">2=admin</span></small>
       <div class="form-row">
         <div class="col">
           <input id="addFirstname" name="addFirstname" type="text" class="form-control form-control-lg my-2" placeholder="Firstname" value="{{ fillUserEditInfo[0]['first_name'] }}" required>
@@ -16,8 +18,35 @@
           <input id="addLastname" name="addLastname" type="text" class="form-control form-control-lg my-2" placeholder="Lastname" value="{{ fillUserEditInfo[0]['last_name'] }}" required>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <div class="col-sm py-3 mt-2 text-center">
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </div>
     </form>
+  </div>
+  <div class="col-sm py-3">
+    <p>Here is a list of all your users</p>
+    <table class="table table-hover">
+      <thead class="bg-danger text-white">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Admin?</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user['user_id'] }}</td>
+          <td>{{ user['username'] }}</td>
+          <td>{{ user['permission_lvl'] }}</td>
+          <td><a href="./edit_{{ user['user_id'] }}"><i class="fas fa-edit"></i></a></td>
+          <td><a href="./delete_{{ user['username'] }}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 {% endblock %}

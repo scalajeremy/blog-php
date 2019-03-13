@@ -83,23 +83,11 @@ public function userDelete(Request $request, Response $response, array $args) : 
 public function fillUserEdit(Request $request, Response $response, array $args) : Response{
     $id = $args['id'];
     $fillUserEditInfo = $this->user->getUserInfoById($id);  // testing it out
+    $displayUsers = $this->user->displayUsers();
     // if($this->user->editUser($id)){
         // return $response->withRedirect($this->router->pathFor('adm_users'),301); on va essayer avec un render pour envoyer les données en array à la page
-    return $this->view->render($response, 'admin/adm_users_edit.twig', array("fillUserEditInfo"=>$fillUserEditInfo));
+    return $this->view->render($response, 'admin/adm_users_edit.twig', array("fillUserEditInfo"=>$fillUserEditInfo, "users"=>$displayUsers));
 }
-
-
-// Jamal : je fais ça (ci-dessous) après la fonction fillUserEdit
-// public function userEdit(Request $request, Response $response, array $args) : Response{
-//     $id = $args['id'];
-//     if($this->user->editUser($id)){
-//         return $response->withRedirect($this->router->pathFor('adm_users'),301);
-//     }else{
-//         $_SESSION['flash']['danger'] = 'Problem while signing up.';
-//         return $response->withRedirect($this->router->pathFor('adm_users_edit'),301);
-//     }
-//     return $response;
-// }
 
 public function userEdit(Request $request, Response $response, array $args) : Response{
     $firstname = $request->getParam('addFirstname');
@@ -109,7 +97,6 @@ public function userEdit(Request $request, Response $response, array $args) : Re
     $password = $request->getParam('addPasswd');
     $permission = $request->getParam('addPermission');
     $id = $args['id'];
-
     if($this->user->editUser($id, $firstname, $lastname, $email, $username, $password, $permission)){
         return $response->withRedirect($this->router->pathFor('adm_users'),301);
     }else{

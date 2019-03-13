@@ -1,6 +1,6 @@
 {% extends 'admin/adm_common.twig' %}
 {% block content %}
-<h2>Add/Edit Users</h2>
+<h2>Manage Users</h2>
 <div class="row">
   <div class="col-sm py-3">
     <p>Add a user</p>
@@ -16,7 +16,9 @@
           <input id="addLastname" name="addLastname" type="text" class="form-control form-control-lg my-2" placeholder="Lastname" required>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <div class="col-sm py-3 mt-2 text-center">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
     </form>
   </div>
   <div class="col-sm py-3">
@@ -31,8 +33,6 @@
           <th scope="col">Delete</th>
         </tr>
       </thead>
-
-
       <tbody>
         {% for user in users %}
         <tr>
@@ -44,10 +44,6 @@
         </tr>
         {% endfor %}
       </tbody>
-
-
-
-
     </table>
   </div>
 </div>
