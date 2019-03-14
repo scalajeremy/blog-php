@@ -13,6 +13,18 @@ body{
 // #adm_dashboard:nth-child(even) {
 //   background-color: #cc6d6d;
 // }
+#demo{
+  transform: rotate(-30deg);
+  z-index: 1;
+  position: absolute;
+  width: 40%;
+  padding: 50px;
+  text-align: center;
+}
+
+.ckeditor_show_content{
+
+}
 
 #media {
     position: relative;
