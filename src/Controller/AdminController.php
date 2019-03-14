@@ -39,9 +39,9 @@ class AdminController extends Controller{
   public function categoriesAction(Request $request, Response $response, array $args) : Response{
     $addCategory = $request->getParam('addCategory');
     if($this->categorie->addCategorie($addCategory)){
-      return $response->withRedirect($this->router->pathFor('adm.categories'),301);
+      return $response->withRedirect($this->router->pathFor('adm_cat'),301);
     }else{
-      return $response->withRedirect($this->router->pathFor('adm.categories'),301);
+      return $response->withRedirect($this->router->pathFor('adm_cat'),301);
     }
   }
   public function media(Request $request, Response $response, array $args) {
@@ -105,6 +105,20 @@ public function userEdit(Request $request, Response $response, array $args) : Re
     }
     return $response;
 }
+
+////// Jam : 14/09/2019 : je fais edit et delete cat.
+
+public function catDelete(Request $request, Response $response, array $args) : Response{
+    $category_id = $args['category_id'];
+    if($this->categorie->deleteCategorie($category_id)){
+        return $response->withRedirect($this->router->pathFor('adm_cat'),301);
+    }else{
+        $_SESSION['flash']['danger'] = 'Problem while signing up.';
+        return $response->withRedirect($this->router->pathFor('adm_cat'),301);
+    }
+    return $response;
+}
+
 
 
 }
