@@ -16,7 +16,7 @@
 
             {% for categorie in categories %}
             <div class="checkbox hover">
-              <label><input type="checkbox" id="addArticleCategory" name="addArticleCategory" value="cat_{{ categorie['category_id'] }}"> {{ categorie['cat_name'] }}</label>
+              <label><input type="checkbox" id="addArticleCategory" name="addArticleCategory[]" value="{{ categorie['category_id'] }}"> {{ categorie['cat_name'] }}</label>
             </div>
             {% endfor %}
 

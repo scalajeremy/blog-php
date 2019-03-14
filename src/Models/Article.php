@@ -10,23 +10,42 @@ class Article {
         $this->container = $container;
     }
 
-    public function addArticle($addTitle, $addContent) : bool{
+    public function addArticle($addTitle, $addContent, $categories) : bool{
         $addTitle = htmlspecialchars($addTitle);
         $addContent = htmlspecialchars_decode($addContent, ENT_HTML5);
-        // $addCategory = htmlspecialchars($addCategory);
-        // $addAuthor = htmlspecialchars($addAuthor);
         try{
           $sql = "INSERT INTO articles (title, content, date_publication, author)
-          VALUES (:title, :content, NOW(), :author)";
+          VALUES (:title, :content, NOW(), :author)
+          RETURNING article_id";
           $stmt = $this->container->db->prepare($sql);
           $req = $stmt->execute([
             'title' => $addTitle,
             'content' => $addContent,
             'author' => $_SESSION["auth"]["user_id"]
           ]);
+          $article = $stmt->fetch(\PDO::FETCH_ASSOC);
+          var_dump($article);
+          if(!empty($categories)){
+            foreach($categories as $selected){
+              $sql = "INSERT INTO list_of_categories(article, category)
+              VALUES (:article, :category)";
+              $stmt = $this->container->db->prepare($sql);
+              $req = $stmt->execute([
+                'article' => $article['article_id'],
+                'category' => $selected
+              ]);
+            }
             return true;
-        }
-        catch(Exception $e){
+          }else{
+            $sql = "INSERT INTO list_of_categories(article, category)
+            VALUES (:article, 0)";
+            $stmt = $this->container->db->prepare($sql);
+            $req = $stmt->execute([
+              'article' => $article['article_id']
+            ]);
+            return true;
+          }
+        }catch(Exception $e){
             return false;
         }
     }
@@ -36,7 +55,8 @@ class Article {
       FROM users u, articles a
       WHERE a.author = u.user_id AND a.article_id IN
       (SELECT DISTINCT lc.article
-      FROM list_of_categories lc)';
+      FROM list_of_categories lc)
+      ORDER BY a.date_publication DESC';
       $stmt= $this->container->db->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetchAll();

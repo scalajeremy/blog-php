@@ -24,11 +24,9 @@ class AdminController extends Controller{
   }
 
   public function articlesAction(Request $request, Response $response, array $args) : Response{
-
     $addTitle = $request->getParam('addArticleTitle');
-    // $addCategory = $request->getParam('addArticleCategory');
     $addContent = $editor_data = $_POST[ 'content' ];
-    if($this->article->addArticle($addTitle, $addContent)){
+    if($this->article->addArticle($addTitle, $addContent, $_POST['addArticleCategory'])){
       return $response->withRedirect($this->router->pathFor('adm.articles'),301);
     }else{
       return $response->withRedirect($this->router->pathFor('adm.articles'),301);
