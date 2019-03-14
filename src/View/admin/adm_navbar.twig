@@ -1,33 +1,33 @@
     <nav id="sidebar">
         <div class="sidebar-header">
-          <h3><a href="home">Mots Pressés</a></h3>
+          <h3><a href="/home">Mots Pressés</a></h3>
         </div>
         <ul class="list-unstyled components">
           <p class="text-center">Welcome back, {{ session.auth.username }}.</p>
 
           <li>
-            <a href="adm_dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="/adm_dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
           </li>
           <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><i class="fas fa-file-alt"></i> Articles</a>
             <ul class="collapse list-unstyled show" id="homeSubmenu">
               <li>
-                <a href="adm_add_articles"><i class="fas fa-plus"></i> Add Articles</a>
+                <a href="/adm_add_articles"><i class="fas fa-plus"></i> Add Articles</a>
               </li>
               <li>
-                <a href="adm_articles"><i class="fas fa-edit"></i> Manage Articles</a>
+                <a href="/adm_articles"><i class="fas fa-edit"></i> Manage Articles</a>
               </li>
               <li>
-                <a href="adm_cat"><i class="fas fa-bars"></i> Categories</a>
+                <a href="/adm_cat"><i class="fas fa-bars"></i> Categories</a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="adm_media"><i class="fas fa-upload"></i> Manage Media</a>
+            <a href="/adm_media"><i class="fas fa-upload"></i> Manage Media</a>
           </li>
           <li>
-            <a href="adm_users"><i class="fas fa-users"></i> Manage Users</a>
+            <a href="/adm_users"><i class="fas fa-users"></i> Manage Users</a>
           </li>
         </ul>
-        <p class="text-center"><a id="adm_logout" class="btn btn-danger" href="logout">Log out</a></p> 
+        <p class="text-center"><a id="adm_logout" class="btn btn-danger" href="/logout">Log out</a></p>
     </nav>

@@ -49,9 +49,9 @@ $app->get('/adm_articles', AdminController::class.':articles')->setName('adm.art
 
 $app->post('/adm_articles', AdminController::class.':articlesAction')->setName('adm.articles');
 
-$app->get('/adm_cat', AdminController::class.':categories')->setName('adm.categories');
+$app->get('/adm_cat', AdminController::class.':categories')->setName('adm_cat');
 
-$app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm.categories');
+$app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm_cat');
 
 $app->get('/adm_media', AdminController::class.':media')->setName('adm_media');
 
@@ -64,5 +64,9 @@ $app->get('/adm_users/delete_{username}', AdminController::class.':userDelete')-
 $app->get('/adm_users/edit_{id}', AdminController::class.':fillUserEdit')->setName('adm_users_edit');
 
 $app->post('/adm_users/edit_{id}', AdminController::class.':userEdit')->setName('adm_users');
+
+$app->get('/adm_cat/delete_{category_id}', AdminController::class.':catDelete')->setName('adm_cat');
+
+$app->get('/adm_cat/edit_{category_id}', AdminController::class.':FillCatEdit')->setName('adm_cat_edit');
 
 // --------- END OF ADMIND PART ---------
