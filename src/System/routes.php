@@ -40,6 +40,7 @@ $app->post('/signup', SignUpController::class.':signupAction')->setName('app.sig
 // --------- END OF AUTHOR ---------
 
 // --------- ADMIN PART ---------
+//dashboard
 $app->get('/adm_dashboard', AdminController::class.':dashboard')->setName('adm.dashboard');
 
 $app->get('/adm_add_articles', AdminController::class.':addArticles')->setName('adm.addArticles');
@@ -48,9 +49,9 @@ $app->get('/adm_articles', AdminController::class.':articles')->setName('adm.art
 
 $app->post('/adm_articles', AdminController::class.':articlesAction')->setName('adm.articles');
 
-$app->get('/adm_cat', AdminController::class.':categories')->setName('adm.categories');
+$app->get('/adm_cat', AdminController::class.':categories')->setName('adm_cat');
 
-$app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm.categories');
+$app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm_cat');
 
 $app->get('/adm_media', AdminController::class.':media')->setName('adm_media');
 
@@ -64,16 +65,8 @@ $app->get('/adm_users/edit_{id}', AdminController::class.':fillUserEdit')->setNa
 
 $app->post('/adm_users/edit_{id}', AdminController::class.':userEdit')->setName('adm_users');
 
-////////////
+$app->get('/adm_cat/delete_{category_id}', AdminController::class.':catDelete')->setName('adm_cat');
+
+$app->get('/adm_cat/edit_{category_id}', AdminController::class.':FillCatEdit')->setName('adm_cat_edit');
+
 // --------- END OF ADMIND PART ---------
-/*
-
-// defining a route group, in that case all uri will have /post then the path added in the group
-
-$app->group('/post', function(){
-    $this->get('', PostController::class.':index');
-    // this calls the controller
-    $this->get('/{slug: [a-zA-Z0-9]+}', PostController::class.':show');
-
-});
-*/

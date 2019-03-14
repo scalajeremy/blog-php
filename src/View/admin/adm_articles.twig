@@ -8,7 +8,6 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Title</th>
-        <th scope="col">Content (preview)</th>
         <th scope="col">Category</th>
         <th scope="col">Author</th>
         <th scope="col">Date</th>
@@ -22,8 +21,15 @@
       <tr>
         <td>{{ i }}</td>
         <td>{{ article['title'] }}</td>
-        <td>{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</td>
-        <td><span class="bg-danger text-white">**WIP**</span></td>
+        {% set cats = "" %}
+            {% for category in article['categories'] %}
+              {% if loop.last %}
+                {% set cats = cats ~ category['cat_name'] ~ " " %}
+              {% else  %}
+                {% set cats = cats ~ category['cat_name'] ~ ", " %}
+              {% endif %}
+            {% endfor %}
+        <td>{{cats}}</td>
         <td>{{ article['username'] }}</td>
         <td>{{ article['date_publication']|slice(0, 10) }}</td>
         <td><i class="fas fa-edit"></i></td>

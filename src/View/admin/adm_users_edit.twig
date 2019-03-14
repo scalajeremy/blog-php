@@ -42,8 +42,8 @@
             <td>{{ user['user_id'] }}</td>
             <td>{{ user['username'] }}</td>
             <td>{{ user['permission_lvl'] }}</td>
-            <td><a href="./edit_{{ user['user_id'] }}"><i class="fas fa-edit"></i></a></td>
-            <td><a href="./delete_{{ user['username'] }}"><i class="fas fa-trash"></i></a></td>
+            <td><a href="/adm_users/edit_{{ user['user_id'] }}"><i class="fas fa-edit"></i></a></td>
+            <td><a href="/adm_users/delete_{{ user['username'] }}"><i class="fas fa-trash"></i></a></td>
           </tr>
           {% endfor %}
         </tbody>
