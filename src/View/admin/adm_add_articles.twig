@@ -10,14 +10,16 @@
         <textarea name="content" id="editor" placeholder="Begin your superb article here"></textarea>
         <small  class="form-text text-muted pb-3"><span class="text-danger">Don't use code</span>, use the editor only!</small>
       </div>
-      <div class="col-md-auto py-3 h-25 sticky-top border" style="z-index:998;">
+      <div class="col-md-3 py-3 h-25 sticky-top border" style="z-index:998;">
         <label>Choose a category</label>
         <div class="container-fluid">
-          <select class="custom-select">
+
             {% for categorie in categories %}
-              <option id="addArticleCategory" name="addArticleCategory" value="cat_{{ categorie['category_id'] }}">{{ categorie['cat_name'] }}</option>
+            <div class="checkbox hover">
+              <label><input type="checkbox" id="addArticleCategory" name="addArticleCategory" value="cat_{{ categorie['category_id'] }}"> {{ categorie['cat_name'] }}</label>
+            </div>
             {% endfor %}
-          </select>
+
         </div>
       </div>
     </div>
