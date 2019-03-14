@@ -40,6 +40,7 @@ $app->post('/signup', SignUpController::class.':signupAction')->setName('app.sig
 // --------- END OF AUTHOR ---------
 
 // --------- ADMIN PART ---------
+//dashboard
 $app->get('/adm_dashboard', AdminController::class.':dashboard')->setName('adm.dashboard');
 
 $app->get('/adm_add_articles', AdminController::class.':addArticles')->setName('adm.addArticles');
@@ -68,17 +69,4 @@ $app->get('/adm_cat/delete_{category_id}', AdminController::class.':catDelete')-
 
 $app->get('/adm_cat/edit_{category_id}', AdminController::class.':catEdit')->setName('adm_cat');
 
-
-////////////
 // --------- END OF ADMIND PART ---------
-/*
-
-// defining a route group, in that case all uri will have /post then the path added in the group
-
-$app->group('/post', function(){
-    $this->get('', PostController::class.':index');
-    // this calls the controller
-    $this->get('/{slug: [a-zA-Z0-9]+}', PostController::class.':show');
-
-});
-*/
