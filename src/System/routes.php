@@ -67,6 +67,6 @@ $app->post('/adm_users/edit_{id}', AdminController::class.':userEdit')->setName(
 
 $app->get('/adm_cat/delete_{category_id}', AdminController::class.':catDelete')->setName('adm_cat');
 
-$app->get('/adm_cat/edit_{category_id}', AdminController::class.':catEdit')->setName('adm_cat');
+$app->get('/adm_cat/edit_{category_id}', AdminController::class.':FillCatEdit')->setName('adm_cat_edit');
 
 // --------- END OF ADMIND PART ---------

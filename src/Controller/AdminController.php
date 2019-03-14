@@ -124,6 +124,32 @@ public function catDelete(Request $request, Response $response, array $args) : R
     return $response;
 }
 
+public function fillCatEdit(Request $request, Response $response, array $args) : Response{
+    $category_id = $args['category_id'];
+    $fillCatEditInfo = $this->categorie->getCatInfoById($category_id);  // testing it out
+    $displayCat = $this->categorie->displayCategorie();
+    // if($this->user->editUser($id)){
+        // return $response->withRedirect($this->router->pathFor('adm_users'),301); on va essayer avec un render pour envoyer les données en array à la page
+    return $this->view->render($response, 'admin/adm_cat_edit.twig', array("fillCatEditInfo"=>$fillCatEditInfo, "categories"=>$displayCat));
+}
 
+// 11h24 new
+// public function catEdit(Request $request, Response $response, array $args) : Response{
+//     $firstname = $request->getParam('addFirstname');
+//     $lastname = $request->getParam('addLastname');
+//     $email = $request->getParam('addEmail');
+//     $username = $request->getParam('addUsername');
+//     $password = $request->getParam('addPasswd');
+//     $permission = $request->getParam('addPermission');
+//     if($this->user->editUser($id, $firstname, $lastname, $email, $username, $password, $permission)){
+//         return $response->withRedirect($this->router->pathFor('adm_users'),301);
+//     }else{
+//         $_SESSION['flash']['danger'] = 'Problem while signing up.';
+//         return $response->withRedirect($this->router->pathFor('adm_users'),301);
+//     }
+//     return $response;
+// }
+//
+//
 
 }

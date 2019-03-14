@@ -37,6 +37,18 @@ class Categorie {
     public function editCategorie() : bool{
         return false;
     }
+//Jam 11h33 ci-dessous
+    public function getCatInfoById($category_id){
+      $category_id = htmlspecialchars($category_id);
+      $sql = "SELECT cat_name FROM categories WHERE category_id = :category_id";
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->bindValue('category_id', $category_id, \PDO::PARAM_INT);
+      $stmt->execute();
+      $result = $stmt->fetchAll();
+      return $result;
+    }
+
+
     // Request for deleting a category
     public function deleteCategorie($category_id) : bool{
       $category_id = htmlspecialchars($category_id);
