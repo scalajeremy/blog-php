@@ -133,6 +133,21 @@ public function fillCatEdit(Request $request, Response $response, array $args) :
     return $this->view->render($response, 'admin/adm_cat_edit.twig', array("fillCatEditInfo"=>$fillCatEditInfo, "categories"=>$displayCat));
 }
 
+//fonction pour modifier une catégorie
+
+public function catEdit(Request $request, Response $response, array $args) : Response{
+    $newCat_name = $request->getParam('addCategory');
+    $category_id = $args['category_id'];
+    if($this->categorie->editCategorie($category_id, $newCat_name)){
+        return $response->withRedirect($this->router->pathFor('adm_cat'),301);
+    }else{
+        $_SESSION['flash']['danger'] = 'Problem while signing up.';
+        return $response->withRedirect($this->router->pathFor('adm_cat'),301);
+    }
+    return $response;
+}
+
+
 // 11h24 new
 // public function catEdit(Request $request, Response $response, array $args) : Response{
 //     $firstname = $request->getParam('addFirstname');

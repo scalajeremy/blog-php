@@ -33,21 +33,6 @@ class Categorie {
 
       return $result;
     }
-    // Request for edit a category
-    public function editCategorie() : bool{
-        return false;
-    }
-//Jam 11h33 ci-dessous
-    public function getCatInfoById($category_id){
-      $category_id = htmlspecialchars($category_id);
-      $sql = "SELECT cat_name FROM categories WHERE category_id = :category_id";
-      $stmt= $this->container->db->prepare($sql);
-      $stmt->bindValue('category_id', $category_id, \PDO::PARAM_INT);
-      $stmt->execute();
-      $result = $stmt->fetchAll();
-      return $result;
-    }
-
 
     // Request for deleting a category
     public function deleteCategorie($category_id) : bool{
@@ -70,6 +55,35 @@ class Categorie {
           return false;
       }
   }
+
+    // Request for edit a category
+    public function editCategorie($category_id, $newCat_name) : bool{
+        $category_id = htmlspecialchars($category_id);
+        $newCat_name = htmlspecialchars($newCat_name);
+        try{
+            $sql = 'UPDATE categories SET cat_name = :newCat_name WHERE category_id = :category_id';
+            $stmt= $this->container->db->prepare($sql);
+            $stmt->bindValue('category_id', $category_id, \PDO::PARAM_INT);
+            $stmt->bindValue('newCat_name', $newCat_name, \PDO::PARAM_STR);
+            $stmt->execute();
+            return true;
+        }
+        catch(Exception $e){
+            return false;
+        }
+    }
+//Jam 11h33 ci-dessous
+    public function getCatInfoById($category_id){
+      $category_id = htmlspecialchars($category_id);
+      $sql = "SELECT cat_name FROM categories WHERE category_id = :category_id";
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->bindValue('category_id', $category_id, \PDO::PARAM_INT);
+      $stmt->execute();
+      $result = $stmt->fetchAll();
+      return $result;
+    }
+
+
 
     // Request for displaying categories
     public function displayCategorie(){
