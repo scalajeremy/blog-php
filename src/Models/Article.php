@@ -12,7 +12,7 @@ class Article {
 
     public function addArticle($addTitle, $addContent) : bool{
         $addTitle = htmlspecialchars($addTitle);
-        $addContent = htmlspecialchars($addContent);
+        $addContent = htmlspecialchars_decode($addContent, ENT_HTML5);
         // $addCategory = htmlspecialchars($addCategory);
         // $addAuthor = htmlspecialchars($addAuthor);
         try{

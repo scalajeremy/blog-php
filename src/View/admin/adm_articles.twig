@@ -22,7 +22,7 @@
       <tr>
         <td>{{ i }}</td>
         <td>{{ article['title'] }}</td>
-        <td>{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</td>
+        <td><div>{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</div></td>
         <td><span class="bg-danger text-white">**WIP**</span></td>
         <td>{{ article['username'] }}</td>
         <td>{{ article['date_publication']|slice(0, 10) }}</td>
