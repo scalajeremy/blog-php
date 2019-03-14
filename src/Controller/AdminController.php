@@ -12,14 +12,17 @@ class AdminController extends Controller{
     $displayNumCat = $this->categorie->displayNumCat();
     return $this->view->render($response, 'admin/adm_dashboard.twig', array("numArticles"=>$displayNumArticles, "numCat"=>$displayNumCat, "numUsers"=>$displayNumUsers, "numComments"=>$displayNumComments));
   }
+
   public function addArticles(Request $request, Response $response, array $args) {
     $displayCategorie = $this->categorie->displayCategorie();
     return $this->view->render($response, 'admin/adm_add_articles.twig', array("categories"=>$displayCategorie));
   }
+
   public function articles(Request $request, Response $response, array $args) {
     $displayArticles = $this->article->displayArticle();
     return $this->view->render($response, 'admin/adm_articles.twig', array("articles"=>$displayArticles));
   }
+
   public function articlesAction(Request $request, Response $response, array $args) : Response{
 
     $addTitle = $request->getParam('addArticleTitle');
@@ -36,6 +39,7 @@ class AdminController extends Controller{
     $displayCategorie = $this->categorie->displayCategorie();
     return $this->view->render($response, 'admin/adm_cat.twig', array("categories"=>$displayCategorie));
   }
+
   public function categoriesAction(Request $request, Response $response, array $args) : Response{
     $addCategory = $request->getParam('addCategory');
     if($this->categorie->addCategorie($addCategory)){
@@ -44,14 +48,16 @@ class AdminController extends Controller{
       return $response->withRedirect($this->router->pathFor('adm.categories'),301);
     }
   }
+
   public function media(Request $request, Response $response, array $args) {
     return $this->view->render($response, 'admin/adm_media.twig');
   }
+
   public function users(Request $request, Response $response, array $args) {
     $displayUsers = $this->user->displayUsers();
     return $this->view->render($response, 'admin/adm_users.twig', array("users"=>$displayUsers));
   }
-  ////////////
+
   public function usersAction(Request $request, Response $response, array $args) : Response{
       $firstname = $request->getParam('addFirstname');
       $lastname = $request->getParam('addLastname');
@@ -67,7 +73,6 @@ class AdminController extends Controller{
       }
       return $response;
   }
-////////////
 
 public function userDelete(Request $request, Response $response, array $args) : Response{
     $username = $args['username'];
