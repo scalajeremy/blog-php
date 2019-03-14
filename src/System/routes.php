@@ -7,7 +7,6 @@ use App\Controller\AdminController;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-// this is a route directly implemented
 // --------- COMMON PART OF THE WEBSITE ---------
 //Home
 $app->get('/', MainController::class.':index')->setName('app.index');
@@ -41,7 +40,7 @@ $app->post('/signup', SignUpController::class.':signupAction')->setName('app.sig
 
 // --------- ADMIN PART ---------
 //dashboard
-$app->get('/adm_dashboard', AdminController::class.':dashboard')->setName('adm.dashboard');
+$app->get('/adm_dashboard', AdminController::class.':dashboard')->setName('adm.dashboard')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
 $app->get('/adm_add_articles', AdminController::class.':addArticles')->setName('adm.addArticles');
 
@@ -53,18 +52,17 @@ $app->get('/adm_cat', AdminController::class.':categories')->setName('adm_cat');
 
 $app->post('/adm_cat', AdminController::class.':categoriesAction')->setName('adm_cat');
 
-$app->get('/adm_media', AdminController::class.':media')->setName('adm_media');
+$app->get('/adm_media', AdminController::class.':media')->setName('adm_media')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
-$app->get('/adm_users', AdminController::class.':users')->setName('adm_users');
+$app->get('/adm_users', AdminController::class.':users')->setName('adm_users')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
-$app->post('/adm_users', AdminController::class.':usersAction')->setName('adm_users');
+$app->post('/adm_users', AdminController::class.':usersAction')->setName('adm_users')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
-//
-$app->get('/adm_users/delete_{username}', AdminController::class.':userDelete')->setName('adm_users');
+$app->get('/adm_users/delete_{username}', AdminController::class.':userDelete')->setName('adm_users')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
-$app->get('/adm_users/edit_{id}', AdminController::class.':fillUserEdit')->setName('adm_users_edit');
+$app->get('/adm_users/edit_{id}', AdminController::class.':fillUserEdit')->setName('adm_users_edit')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
-$app->post('/adm_users/edit_{id}', AdminController::class.':userEdit')->setName('adm_users');
+$app->post('/adm_users/edit_{id}', AdminController::class.':userEdit')->setName('adm_users')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
 //
 $app->get('/adm_cat/delete_{category_id}', AdminController::class.':catDelete')->setName('adm_cat');
