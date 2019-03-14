@@ -25,8 +25,8 @@
           {% for categorie in categories %}
           <tr>
             <td>{{ categorie['cat_name'] }}</td>
-            <td><a href="adm_cat/edit_{{ categorie['category_id'] }}"><i class="fas fa-edit"></i></a></td>
-            <td><a href="adm_cat/delete_{{ categorie['category_id'] }}"><i class="fas fa-trash"></i></a></td>
+            <td><a href="/adm_cat/edit_{{ categorie['category_id'] }}"><i class="fas fa-edit"></i></a></td>
+            <td><a href="/adm_cat/delete_{{ categorie['category_id'] }}"><i class="fas fa-trash"></i></a></td>
           </tr>
           {% endfor %}
         </tbody>

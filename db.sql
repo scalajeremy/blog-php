@@ -63,7 +63,7 @@ CREATE VIEW commentsByArticles AS
 
 --view to get all articles by categories
 CREATE VIEW articlesByCategories AS
-    SELECT c.cat_name , c.category_id , a.article_id , a.title , a.content , u.username 
+    SELECT c.cat_name , c.category_id , a.article_id , a.title , a.content , u.username
     FROM categories c, articles a, users u, list_of_categories lc
     WHERE c.category_id = lc.category AND u.user_id = a.author AND a.article_id = lc.article
     ORDER BY c.category_id;

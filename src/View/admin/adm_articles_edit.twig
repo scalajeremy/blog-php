@@ -1,0 +1,77 @@
+{% extends 'admin/adm_common.twig' %}
+{% block content %}
+<h2>Edit article</h2>
+<form method="post" action='adm_articles'>
+    <div class="row">
+      <div class="col-sm py-3">
+        <label for="addArticleTitle">Title for your article</label>
+        <input id="addArticleTitle" name="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title" required>
+        <small  class="form-text text-muted pb-3">Choose something cool but no more than <span class="text-danger">50 char. !</span></small>
+        <textarea name="content" id="editor" placeholder="Begin your superb article here"></textarea>
+        <small  class="form-text text-muted pb-3"><span class="text-danger">Don't use code</span>, use the editor only!</small>
+      </div>
+      <div class="col-md-3 py-3 h-25 sticky-top border" style="z-index:998;">
+        <label>Choose a category</label>
+        <div class="container-fluid">
+
+            {% for categorie in categories %}
+            <div class="checkbox hover">
+              <label><input type="checkbox" id="addArticleCategory" name="addArticleCategory" value="cat_{{ categorie['category_id'] }}"> {{ categorie['cat_name'] }}</label>
+            </div>
+            {% endfor %}
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm py-3 mt-2 text-center">
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </div>
+    </div>
+</form>
+<!-- EDITOR STARTING -->
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+          toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', '|', 'link']
+        } )
+
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+<!-- EDITOR ENDING -->
+
+<!-- COMMENTS STARTING -->
+    <!-- <div class="row">
+      <div class="col-sm py-3">
+        <label for="addArticleTitle">Comments for this article</label>
+        <table class="table table-hover">
+          <thead class="bg-danger text-white">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">User</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Sam</td>
+              <td>Pas mal!</td>
+              <td><i class="fas fa-trash"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Julien</td>
+              <td>Anthem sans moi!! Sérieux??</td>
+              <td><i class="fas fa-trash"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div> -->
+<!-- COMMENTS ENDING -->
+{% endblock %}
