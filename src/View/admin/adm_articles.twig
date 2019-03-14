@@ -8,7 +8,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Title</th>
-        <th scope="col">Content (preview)</th>
+        <!-- <th scope="col">Content (preview)</th> -->
         <th scope="col">Category</th>
         <th scope="col">Author</th>
         <th scope="col">Date</th>
@@ -22,7 +22,7 @@
       <tr>
         <td>{{ i }}</td>
         <td>{{ article['title'] }}</td>
-        <td class="ckeditor_show_content">{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</td>
+        <!-- <td class="ckeditor_show_content">{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</td> -->
         <td><span class="bg-danger text-white">**WIP**</span></td>
         <td>{{ article['username'] }}</td>
         <td>{{ article['date_publication']|slice(0, 10) }}</td>

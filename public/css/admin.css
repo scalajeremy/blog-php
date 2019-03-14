@@ -10,6 +10,10 @@ body {
   padding: 50px;
   text-align: center; }
 
+.ckeditor_show_content {
+  text-overflow: ellipsis;
+  width: 1000px; }
+
 #media {
   position: relative;
   padding: 5px; }

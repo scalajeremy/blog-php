@@ -23,7 +23,8 @@ body{
 }
 
 .ckeditor_show_content{
-
+  text-overflow: ellipsis;
+  width: 1000px;
 }
 
 #media {
