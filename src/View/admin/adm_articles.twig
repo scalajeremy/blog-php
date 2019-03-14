@@ -8,11 +8,6 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Title</th>
-<<<<<<< HEAD
-        <!-- <th scope="col">Content (preview)</th> -->
-=======
-        <!--<th scope="col">Content (preview)</th>-->
->>>>>>> 4a3b2704aab76e2ab5111747b4d047296a77730f
         <th scope="col">Category</th>
         <th scope="col">Author</th>
         <th scope="col">Date</th>
@@ -26,22 +21,15 @@
       <tr>
         <td>{{ i }}</td>
         <td>{{ article['title'] }}</td>
-<<<<<<< HEAD
-        <!-- <td class="ckeditor_show_content">{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</td> -->
-        <td><span class="bg-danger text-white">**WIP**</span></td>
-=======
-        <!--<td><div>{{ article['content']|length > 50 ? article['content']|slice(0, 100)~"..." :article['content'] }}</div></td>-->
         {% set cats = "" %}
             {% for category in article['categories'] %}
               {% if loop.last %}
-                {% set cats = cats ~ category['cat_name'] ~ " " %}  
+                {% set cats = cats ~ category['cat_name'] ~ " " %}
               {% else  %}
-                {% set cats = cats ~ category['cat_name'] ~ ", " %}  
-              {% endif %} 
+                {% set cats = cats ~ category['cat_name'] ~ ", " %}
+              {% endif %}
             {% endfor %}
-          
         <td>{{cats}}</td>
->>>>>>> 4a3b2704aab76e2ab5111747b4d047296a77730f
         <td>{{ article['username'] }}</td>
         <td>{{ article['date_publication']|slice(0, 10) }}</td>
         <td><i class="fas fa-edit"></i></td>
