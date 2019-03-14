@@ -29,7 +29,7 @@ class AdminController extends Controller{
     if($this->article->addArticle($addTitle, $addContent, $_POST['addArticleCategory'])){
       return $response->withRedirect($this->router->pathFor('adm.articles'),301);
     }else{
-      return $response->withRedirect($this->router->pathFor('adm.articles'),301);
+      return $response->withRedirect($this->router->pathFor('adm_articles'),301);
     }
   }
 
@@ -143,6 +143,31 @@ public function catEdit(Request $request, Response $response, array $args) : Res
         return $response->withRedirect($this->router->pathFor('adm_cat'),301);
     }
     return $response;
+}
+
+// Jam : 14/03/2019 j'commence le delete article ci-dessous
+
+public function articleDelete(Request $request, Response $response, array $args) : Response{
+    $article_id = $args['article_id'];
+    if($this->article->deleteArticle($article_id)){
+        return $response->withRedirect($this->router->pathFor('adm_articles'),301);
+    }else{
+        $_SESSION['flash']['danger'] = 'Problem while signing up.';
+        return $response->withRedirect($this->router->pathFor('adm_articles'),301);
+    }
+    return $response;
+}
+
+// Jam : toujours le 14/03, 15H58, j'commence le edit article
+
+public function FillArticleEdit(Request $request, Response $response, array $args) : Response{
+    $article_id = $args['article_id'];
+    $fillArticleEditInfo = $this->article->getArtInfoById($article_id);  // testing it out
+    $displayCategorie = $this->categorie->displayCategorie();
+    // $displayArticles = $this->article->displayArticle();
+    // if($this->user->editUser($id)){
+        // return $response->withRedirect($this->router->pathFor('adm_users'),301); on va essayer avec un render pour envoyer les données en array à la page
+    return $this->view->render($response, 'admin/adm_articles_edit.twig', array("fillArticleEditInfo"=>$fillArticleEditInfo, "categories"=>$displayCategorie));
 }
 
 

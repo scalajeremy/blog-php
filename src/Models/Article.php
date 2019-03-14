@@ -74,13 +74,6 @@ class Article {
       return $result;
     }
 
-    public function editArticle() : bool{
-        return false;
-    }
-
-    public function deleteArticle() : bool{
-        return false;
-    }
 
     public function displayNumArticles(){
       $sql = 'SELECT COUNT(*) FROM articles';
@@ -99,5 +92,59 @@ class Article {
 
       return $result;
     }
+
+    // Jam  : 15h30 14/03/2019 ci-dessous
+
+//////////////////
+public function deleteArticle($article_id) : bool{
+  $article_id = htmlspecialchars($article_id);
+
+  try{
+      $sql = "DELETE FROM comments WHERE article= :article_id";
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
+      $stmt->execute();
+
+      $sql = "DELETE FROM list_of_categories WHERE article= :article_id";
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
+      $stmt->execute();
+
+      $sql = "DELETE FROM articles WHERE article_id= :article_id";
+      $stmt= $this->container->db->prepare($sql);
+      $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
+      $stmt->execute();
+
+
+      return true;
+  }
+  catch(Exception $e){
+      return false;
+  }
+}
+//////////////////////////////////////////////
+////////////////// Jam : same day, 16:05, edit article
+// 16H17 Il me faut les cat de l'art, donc des éléments de 2 tables avec des conditions WHERE sur 2 tables, jsp comment faire donc j'vais faire 2 requetes sql séparées et voir si ça marche pour pas perdre de temps (Bicky occupé)
+
+public function getArtInfoById($article_id){
+    $article_id = htmlspecialchars($article_id);
+    $sql = "SELECT title, content FROM articles WHERE article_id = :article_id";
+    $stmt= $this->container->db->prepare($sql);
+    $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+    $sql2 = "SELECT category FROM list_of_categories WHERE article = :article_id";
+    $stmt= $this->container->db->prepare($sql2);
+    $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
+    $stmt->execute();
+    $result2 = $stmt->fetchAll();
+    $result[0]['categories'] = $result2;
+
+    return $result;
+}
+
+
+
 
 }

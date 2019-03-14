@@ -32,8 +32,8 @@
         <td>{{cats}}</td>
         <td>{{ article['username'] }}</td>
         <td>{{ article['date_publication']|slice(0, 10) }}</td>
-        <td><i class="fas fa-edit"></i></td>
-        <td><i class="fas fa-trash"></i></td>
+        <td><a href="adm_articles/edit_{{ article['article_id'] }}"><i class="fas fa-edit"></i></a></td>
+        <td><a href="adm_articles/delete_{{ article['article_id'] }}"><i class="fas fa-trash"></i></a></td>
       </tr>
         {% set i = i + 1 %}
         {% endfor %}
