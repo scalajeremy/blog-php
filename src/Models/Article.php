@@ -32,9 +32,9 @@ class Article {
     }
 
     public function displayArticle(){
-      $sql = 'SELECT a.article_id, a.title, a.date_publication, a.content, u.username 
+      $sql = 'SELECT a.article_id, a.title, a.date_publication, a.content, u.username
       FROM users u, articles a
-      WHERE a.author = u.user_id AND a.article_id IN 
+      WHERE a.author = u.user_id AND a.article_id IN
       (SELECT DISTINCT lc.article
       FROM list_of_categories lc)';
       $stmt= $this->container->db->prepare($sql);
@@ -45,7 +45,7 @@ class Article {
           $sql = 'SELECT c.cat_name, c.category_id
           FROM categories c, list_of_categories lc
           WHERE c.category_id = lc.category AND lc.article ='.$article['article_id'];
-          $stmt = $stmtm = $this->container->db->prepare($sql); 
+          $stmt = $stmtm = $this->container->db->prepare($sql);
           $stmt->execute();
           $categories = $stmt->fetchAll();
           $result[$i]['categories'] = $categories;

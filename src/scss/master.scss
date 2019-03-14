@@ -21,8 +21,18 @@ body {
 }
 
 .card-articles {
+  border: 2px solid rgba(0,0,0,.125);
+
+  h5 {
+    text-align: center;
+  }
+
   h6 {
+    border-bottom: 1px solid rgba(0,0,0,.125);
     font-style: italic;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    text-align: center;
   }
 
   .card-text {
@@ -90,7 +100,7 @@ footer {
 .signup-content,
 .main-content,
 .team-content {
-  min-height: 75vh;
+  min-height: 60vh;
 }
 
 .login-content form,
@@ -112,14 +122,21 @@ footer {
 .card-article {
   padding-top: 20px;
   margin: 0;
-  
+
+  .card {
+    border: 2px solid rgba(0,0,0,.125);
+  }
+
   img {
     max-height: 300px;
     object-fit: cover;
   }
 
   .author {
+    border-bottom: 1px solid rgba(0,0,0,.125);
     font-style: italic;
+    margin: 0;
+    padding-bottom: 10px;
     text-align: center;
   }
 
