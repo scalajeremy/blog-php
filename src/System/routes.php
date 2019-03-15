@@ -20,7 +20,7 @@ $app->get('/team', MainController::class.':team')->setName('app.team');
 $app->get('/articles', MainController::class.':articles')->setName('app.articles');
 
 //Article
-$app->get('/article{id}', MainController::class.':getArticle')->setName('app.article');
+$app->get('/article{article_id}', MainController::class.':article')->setName('app.article');
 
 //Login
 $app->get('/login', AuthController::class.':login')->setName('app.login');
