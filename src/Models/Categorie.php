@@ -84,8 +84,6 @@ class Categorie {
       return $result;
     }
 
-
-
     // Request for displaying categories
     public function displayCategorie(){
       $sql = 'SELECT cat_name, category_id
