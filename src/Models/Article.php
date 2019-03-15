@@ -74,9 +74,8 @@ class Article {
       return $result;
     }
 
-
+    // Display Articles by category
     public function displayArticleByCat($category_id){
-      $category_id = 2;
       $sql = 'SELECT a.article_id, a.title, a.date_publication, a.content, u.username
       FROM users u, articles a
       WHERE a.author = u.user_id AND a.article_id IN
@@ -88,17 +87,6 @@ class Article {
       $stmt->bindValue('category_id', $category_id, \PDO::PARAM_INT);
       $stmt->execute();
       $result = $stmt->fetchAll();
-      $i = 0;
-      foreach($result as $article){
-          $sql = 'SELECT c.cat_name, c.category_id
-          FROM categories c, list_of_categories lc
-          WHERE c.category_id = lc.category AND lc.article ='.$article['article_id'];
-          $stmt = $stmtm = $this->container->db->prepare($sql);
-          $stmt->execute();
-          $categories = $stmt->fetchAll();
-          $result[$i]['categories'] = $categories;
-          $i++;
-      }
       return $result;
     }
 

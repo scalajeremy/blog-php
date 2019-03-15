@@ -22,6 +22,10 @@ $app->get('/articles', MainController::class.':articles')->setName('app.articles
 //Article
 $app->get('/article{article_id}', MainController::class.':article')->setName('app.article');
 
+
+//Article by cat
+$app->get('/artByCat{category_id}', MainController::class.':articlesByCat')->setName('app.articles');
+
 //Login
 $app->get('/login', AuthController::class.':login')->setName('app.login');
 
