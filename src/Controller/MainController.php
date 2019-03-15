@@ -17,8 +17,7 @@ class MainController extends Controller{
     // list of articles by cat display
     public function articles(Request $request, Response $response, array $args) : Response {
         $displayArticles = $this->article->displayArticle();
-        $displayCategories = $this->categorie->displayCategorie();
-        return $this->view->render($response, 'common/articles.twig', array("articles"=>$displayArticles, "categories"=>$displayCategories));
+        return $this->view->render($response, 'common/articles.twig', array("articles"=>$displayArticles));
     }
 
     public function article(Request $request, Response $response, array $args) : Response {
