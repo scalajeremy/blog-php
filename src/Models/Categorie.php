@@ -37,8 +37,9 @@ class Categorie {
     // Request for deleting a category
     public function deleteCategorie($category_id) : bool{
       $category_id = htmlspecialchars($category_id);
-
+    
       try{
+          //$sql = "Count(category)"
           $sql = "DELETE FROM list_of_categories WHERE category= :category_id";
           $stmt= $this->container->db->prepare($sql);
           $stmt->bindValue('category_id', $category_id, \PDO::PARAM_INT);
