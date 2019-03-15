@@ -101,6 +101,7 @@ INSERT INTO categories(cat_name) VALUES('Meditation');
 INSERT INTO categories(cat_name) VALUES('Work environment');
 INSERT INTO categories(cat_name) VALUES('Wildlife');
 INSERT INTO categories(cat_name) VALUES('Living style');
+INSERT INTO categories(category_id, cat_name) VALUES(0, 'uncategorized');
 
 --insert list_of_categories
 INSERT INTO list_of_categories(article, category) VALUES (1, 3);
