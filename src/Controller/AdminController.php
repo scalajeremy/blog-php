@@ -25,9 +25,9 @@ class AdminController extends Controller{
 
   public function articlesAction(Request $request, Response $response, array $args) : Response{
     $addTitle = $request->getParam('addArticleTitle');
-    $addContent = $editor_data = $_POST[ 'content' ];
+    $addContent = $_POST[ 'content' ];
     if($this->article->addArticle($addTitle, $addContent, $_POST['addArticleCategory'])){
-      return $response->withRedirect($this->router->pathFor('adm.articles'),301);
+      return $response->withRedirect($this->router->pathFor('adm_articles'),301);
     }else{
       return $response->withRedirect($this->router->pathFor('adm_articles'),301);
     }
@@ -168,6 +168,24 @@ public function FillArticleEdit(Request $request, Response $response, array $arg
     // if($this->user->editUser($id)){
         // return $response->withRedirect($this->router->pathFor('adm_users'),301); on va essayer avec un render pour envoyer les données en array à la page
     return $this->view->render($response, 'admin/adm_articles_edit.twig', array("fillArticleEditInfo"=>$fillArticleEditInfo, "categories"=>$displayCategorie));
+}
+
+// Jam = 15/03, 09h53, j'fais la route POST edit article
+
+
+public function articleEdit(Request $request, Response $response, array $args) : Response{
+    $article_id = $args['article_id'];
+    $newArticle_title = $request->getParam('addArticleTitle');
+    $newArticle_content = $request->getParam('content');
+    $newArticle_categories = $_POST['addArticleCategory'];
+
+    if ($this->article->editArticle($article_id, $newArticle_title, $newArticle_content, $newArticle_categories)) {
+        return $response->withRedirect($this->router->pathFor('adm_articles'),301);
+    }else{
+        $_SESSION['flash']['danger'] = 'Problem while signing up.';
+        return $response->withRedirect($this->router->pathFor('adm_articles'),301);
+    }
+    return $response;
 }
 
 
