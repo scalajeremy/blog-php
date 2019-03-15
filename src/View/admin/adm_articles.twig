@@ -22,14 +22,14 @@
         <td>{{ i }}</td>
         <td>{{ article['title'] }}</td>
         {% set cats = "" %}
-            {% for category in article['categories'] %}
-              {% if loop.last %}
-                {% set cats = cats ~ category['cat_name'] ~ " " %}
-              {% else  %}
-                {% set cats = cats ~ category['cat_name'] ~ ", " %}
-              {% endif %}
-            {% endfor %}
-        <td>{{cats}}</td>
+        {% for category in article['categories'] %}
+          {% if loop.last %}
+            {% set cats = cats ~ category['cat_name'] ~ " " %}  
+          {% else  %}
+            {% set cats = cats ~ category['cat_name'] ~ ", " %}  
+          {% endif %} 
+        {% endfor %}
+        <td>{{ cats }}</td>
         <td>{{ article['username'] }}</td>
         <td>{{ article['date_publication']|slice(0, 10) }}</td>
         <td><a href="adm_articles/edit_{{ article['article_id'] }}"><i class="fas fa-edit"></i></a></td>
