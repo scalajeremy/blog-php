@@ -181,13 +181,14 @@ public function getArticleById($article_id){
   $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
   $stmt->execute();
   $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
   $sql = 'SELECT c.cat_name, c.category_id
   FROM categories c, list_of_categories lc
   WHERE c.category_id = lc.category AND lc.article ='.$article_id;
   $stmt = $stmtm = $this->container->db->prepare($sql);
   $stmt->execute();
-  $categories = $stmt->fetch(\PDO::FETCH_ASSOC);
-  $result[0]['categories'] = $categories;
+  $categories = $stmt->fetchAll();
+  $result['categories'] = $categories;
 
   return $result;
 }
