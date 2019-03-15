@@ -18,10 +18,10 @@
       <div class="card-body">
         <h2 class="card-title title">{{ article['title'] }}</h2>
         <h5 class="card-author author">By {{ article['username'] }}</h5>
-        <div class="card-text content">{{ article['content']|striptags|slice(0, 500)  }}</div>
+        <div class="card-text content px-lg-5 py-3">{{ article['content']|striptags|slice(0, 500)  }}</div>
         <h6 class="card-date date">{{ article['date_publication']|slice(0, 10) }}</h6>
+        <a href="article{{ article['article_id'] }}" class="btn btn-secondary ml-lg-5">Read More</a>
       </div>
-      <a href="article{{ article['article_id'] }}" class="btn btn-secondary">Read More</a>
     </div>
   </div>
   {% endfor %}

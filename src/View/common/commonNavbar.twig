@@ -26,6 +26,11 @@
           <a class="nav-link" href="adm_dashboard">Go to Dashboard</a>
         </li>
         {% endif %}
+        {% if session.auth.permission == 1 %}
+        <li class="nav-item">
+          <a class="nav-link" href="adm_add_articles">Write an article</a>
+        </li>
+        {% endif %}
       <li class="nav-item">
         <a class="nav-link" href="logout">Log out</a>
       </li>

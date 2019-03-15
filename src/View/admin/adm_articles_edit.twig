@@ -1,25 +1,28 @@
 {% extends 'admin/adm_common.twig' %}
 {% block content %}
 <h2>Edit article</h2>
-<form method="post" action='adm_articles'>
+<form method="post">
     <div class="row">
       <div class="col-sm py-3">
-        <label for="addArticleTitle">Title for your article</label>
-        <input id="addArticleTitle" name="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title" required>
+        <label for="addArticleTitle">Title for your article {{ fillArticleEditInfo[0]['categories'][1]['category'] }}</label>
+        <input id="addArticleTitle" name="addArticleTitle" type="text" class="form-control form-control-lg" placeholder="Your title" required value="{{ fillArticleEditInfo[0]['title'] }}">
         <small  class="form-text text-muted pb-3">Choose something cool but no more than <span class="text-danger">50 char. !</span></small>
-        <textarea name="content" id="editor" placeholder="Begin your superb article here"></textarea>
+        <textarea name="content" id="editor" placeholder="Begin your superb article here">{{ fillArticleEditInfo[0]['content'] }}</textarea>
         <small  class="form-text text-muted pb-3"><span class="text-danger">Don't use code</span>, use the editor only!</small>
       </div>
       <div class="col-md-3 py-3 h-25 sticky-top border" style="z-index:998;">
         <label>Choose a category</label>
         <div class="container-fluid">
+
             {% for categorie in categories %}
-              {% if not categorie['category_id'] == 0 %}
             <div class="checkbox hover">
-              <label><input type="checkbox" id="addArticleCategory" name="addArticleCategory" value="cat_{{ categorie['category_id'] }}"> {{ categorie['cat_name'] }}</label>
+              <label><input type="checkbox" id="addArticleCategory" name="addArticleCategory[]" value="{{ categorie['category_id'] }}" {% if categorie['category_id'] == fillArticleEditInfo[0]['categories'][0]['category'] or categorie['category_id'] == fillArticleEditInfo[0]['categories'][1]['category'] or categorie['category_id'] == fillArticleEditInfo[0]['categories'][2]['category'] or
+                categorie['category_id'] == fillArticleEditInfo[0]['categories'][3]['category'] or categorie['category_id'] == fillArticleEditInfo[0]['categories'][4]['category'] or categorie['category_id'] == fillArticleEditInfo[0]['categories'][5]['category'] %}
+                checked
+                {% endif %}> {{ categorie['cat_name'] }}</label>
             </div>
-              {% endif %}
             {% endfor %}
+
         </div>
       </div>
     </div>

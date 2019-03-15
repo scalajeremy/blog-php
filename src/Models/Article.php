@@ -140,7 +140,7 @@ public function deleteArticle($article_id) : bool{
 }
 //////////////////////////////////////////////
 ////////////////// Jam : same day, 16:05, edit article
-// 16H17 Il me faut les cat de l'art, donc des éléments de 2 tables avec des conditions WHERE sur 2 tables, jsp comment faire donc j'vais faire 2 requetes sql séparées et voir si ça marche pour pas perdre de temps (Bicky occupé)
+// 16H17 Il me faut les cat de l'art, donc des éléments de 2 tables avec des conditions WHERE sur 2 tables, jsp comment faire donc j'vais faire 2 requetes sql séparées et voir si ça marche pour pas perdre de temps (Bicky occupé) EDIT : ça marche
 
 public function getArtInfoById($article_id){
     $article_id = htmlspecialchars($article_id);
@@ -160,6 +160,43 @@ public function getArtInfoById($article_id){
     return $result;
 }
 
+
+public function editArticle($article_id, $newArticle_title, $newArticle_content, $newArticle_categories) : bool{
+    $article_id = htmlspecialchars($article_id);
+    $newArticle_title = htmlspecialchars($newArticle_title);
+    $newArticle_content = htmlspecialchars($newArticle_content);
+
+    try{
+        $sql = 'UPDATE articles SET content = :newArticle_content, title = :newArticle_title WHERE article_id = :article_id';
+        $stmt= $this->container->db->prepare($sql);
+        $stmt->bindValue('newArticle_content', $newArticle_content, \PDO::PARAM_INT);
+        $stmt->bindValue('newArticle_title', $newArticle_title, \PDO::PARAM_STR);
+        $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        if(!empty($newArticle_categories)){
+          $sql = "DELETE FROM list_of_categories WHERE article = :article_id";
+          $stmt= $this->container->db->prepare($sql);
+          $req = $stmt->execute([
+            'article_id' => $article_id
+          ]);
+          foreach($newArticle_categories as $selected){
+            $sql = "INSERT INTO list_of_categories(article, category)
+            VALUES (:article_id, :category)";
+            $stmt = $this->container->db->prepare($sql);
+            $req = $stmt->execute([
+              'article_id' => $article_id,
+              'category' => $selected['category_id']
+            ]);
+          }
+        }
+        return true;
+    }
+    catch(Exception $e){
+        return false;
+    }
+}
+
 public function getArticleById($article_id){
   $article_id = intval (htmlspecialchars($article_id));
   $sql = 'SELECT a.article_id, a.title, a.date_publication, a.content, u.username
@@ -169,13 +206,14 @@ public function getArticleById($article_id){
   $stmt->bindValue('article_id', $article_id, \PDO::PARAM_INT);
   $stmt->execute();
   $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
   $sql = 'SELECT c.cat_name, c.category_id
   FROM categories c, list_of_categories lc
   WHERE c.category_id = lc.category AND lc.article ='.$article_id;
   $stmt = $stmtm = $this->container->db->prepare($sql);
   $stmt->execute();
-  $categories = $stmt->fetch(\PDO::FETCH_ASSOC);
-  $result[0]['categories'] = $categories;
+  $categories = $stmt->fetchAll();
+  $result['categories'] = $categories;
 
   return $result;
 }
