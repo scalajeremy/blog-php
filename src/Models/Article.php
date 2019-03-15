@@ -164,7 +164,7 @@ public function getArtInfoById($article_id){
 public function editArticle($article_id, $newArticle_title, $newArticle_content, $newArticle_categories) : bool{
     $article_id = htmlspecialchars($article_id);
     $newArticle_title = htmlspecialchars($newArticle_title);
-    $newArticle_content = htmlspecialchars($newArticle_content);
+    $newArticle_content = htmlspecialchars_decode($newArticle_content, ENT_HTML5);
 
     try{
         $sql = 'UPDATE articles SET content = :newArticle_content, title = :newArticle_title WHERE article_id = :article_id';
