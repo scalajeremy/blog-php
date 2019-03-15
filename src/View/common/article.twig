@@ -2,21 +2,21 @@
 
 {% block content %}
 <div class="main-article">
-  {% for article in articles %}
+
   <div class="card-deck card-article mx-auto col-md-11">
+    <div class="card">
       <div class="card-body">
         <h2 class="card-title title">{{ article['title'] }}</h2>
         <h5 class="card-author author">By {{ article['username'] }}</h5>
-        <div class="card-text content px-lg-5 py-3">{{ article['content'] }}</div>
+        <div class="card-text content px-lg-5 py-3">{{ article['content']|raw }}</div>
         <h6 class="card-date date">{{ article['date_publication']|slice(0, 10) }}</h6>
       </div>
     </div>
   </div>
-  {% endfor %}
 
   <nav aria-label="Page navigation">
     <ul class="pagination justify-content-end">
-      <li class="page-item"><a class="page-link" href="home">Back home</a></li>
+      <li class="page-item"><a class="btn btn-dark" href="home">Back home</a></li>
   </nav>
 </div>
 {% endblock %}

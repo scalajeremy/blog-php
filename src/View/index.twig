@@ -10,8 +10,8 @@
           <div class="card-body">
             <h5 class="card-title title">{{ article['title'] }}</h5>
             <h6 class="card-author author">By {{ article['username'] }}</h6>
-            <div class="card-text content">{{ article['content']|raw }}</div>
-            <a href="#" class="btn btn-secondary">Read More</a>
+            <div class="card-text content">{{ article['content']|striptags|slice(0, 200)}}</div>
+            <a href="article{{ article['article_id'] }}" class="btn btn-secondary">Read More</a>
           </div>
         </div>
       </div>

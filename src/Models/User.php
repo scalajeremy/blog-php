@@ -106,14 +106,12 @@ class User{
         catch(Exception $e){
             return false;
         }
-
       }
     }
 
     //delete the user in the database, (change a flag, not a real deletion)
     public function deleteUser($username) : bool{
       $username = htmlspecialchars($username);
-
       try{
           $sql = "UPDATE users SET is_active = 'False' WHERE username = :username";
           $stmt= $this->container->db->prepare($sql);
@@ -125,32 +123,6 @@ class User{
           return false;
       }
   }
-
-    //check if the user didn't change his session to be someone else
-    // session secure / login.username.permission.time() => sha-256
-    public function check() : bool{
-        return true;
-    }
-
-    //change de permission lvl of a user, useless because editUser does that already.
-    // 11/3/2019 12h22 : this function should work now, Jam
-  //   public function changePermission($username, $permission) : bool{
-  //
-  //     $username = htmlspecialchars($username);
-  //     $permission = htmlspecialchars($permission);
-  //
-  //     try{
-  //         $sql = "UPDATE users SET permission_lvl = :permission WHERE username = :username"; //alter table to do
-  //         $stmt= $this->container->db->prepare($sql);
-  //         $stmt->bindValue('username', $username, PDO::PARAM_STR);
-  //         $stmt->bindValue('permission_lvl', $permission, PDO::PARAM_INT);  //replaced STR with INT, not sure tho, Jam.
-  //         $stmt->execute();
-  //         return true;
-  //     }
-  //     catch(Exception $e){
-  //         return false;
-  //     }
-  // }
 
     // Display users
     public function displayUsers(){
@@ -169,11 +141,10 @@ class User{
       $stmt= $this->container->db->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-
       return $result;
     }
 
-//New Jam : 13/03/2019 11H27
+    //New Jam : 13/03/2019 11H27
     public function getUserInfoById($id){
       $id = htmlspecialchars($id);
       $sql = "SELECT user_id, last_name, first_name, username, passwd, email, permission_lvl FROM users WHERE user_id = :id";
@@ -183,5 +154,4 @@ class User{
       $result = $stmt->fetchAll();
       return $result;
     }
-
 }

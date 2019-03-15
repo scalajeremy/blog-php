@@ -20,7 +20,7 @@ $app->get('/team', MainController::class.':team')->setName('app.team');
 $app->get('/articles', MainController::class.':articles')->setName('app.articles');
 
 //Article
-$app->get('/article{id}', MainController::class.':getArticle')->setName('app.article');
+$app->get('/article{article_id}', MainController::class.':article')->setName('app.article');
 
 //Login
 $app->get('/login', AuthController::class.':login')->setName('app.login');
@@ -67,14 +67,12 @@ $app->get('/adm_users/edit_{id}', AdminController::class.':fillUserEdit')->setNa
 
 $app->post('/adm_users/edit_{id}', AdminController::class.':userEdit')->setName('adm_users')->add(new \App\Middleware\AdminPermissionMiddleware($container));
 
-//
 $app->get('/adm_cat/delete_{category_id}', AdminController::class.':catDelete')->setName('adm_cat');
 
 $app->get('/adm_cat/edit_{category_id}', AdminController::class.':FillCatEdit')->setName('adm_cat_edit');
 
 $app->post('/adm_cat/edit_{category_id}', AdminController::class.':catEdit')->setName('adm_cat');
 
-//
 $app->get('/adm_articles/delete_{article_id}', AdminController::class.':articleDelete')->setName('adm_articles');
 
 $app->get('/adm_articles/edit_{article_id}', AdminController::class.':FillArticleEdit')->setName('adm_articles_edit');
