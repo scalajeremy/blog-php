@@ -15,9 +15,11 @@
         <div class="container-fluid">
 
             {% for categorie in categories %}
+              {% if not categorie['category_id'] == 0 %}
             <div class="checkbox hover">
               <label><input type="checkbox" id="addArticleCategory" name="addArticleCategory[]" value="{{ categorie['category_id'] }}"> {{ categorie['cat_name'] }}</label>
             </div>
+              {% endif %}
             {% endfor %}
 
         </div>

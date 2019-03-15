@@ -27,7 +27,7 @@ class AdminController extends Controller{
     $addTitle = $request->getParam('addArticleTitle');
     $addContent = $editor_data = $_POST[ 'content' ];
     if($this->article->addArticle($addTitle, $addContent, $_POST['addArticleCategory'])){
-      return $response->withRedirect($this->router->pathFor('adm.articles'),301);
+      return $response->withRedirect($this->router->pathFor('adm_articles'),301);
     }else{
       return $response->withRedirect($this->router->pathFor('adm_articles'),301);
     }
