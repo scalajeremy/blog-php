@@ -77,4 +77,7 @@ $app->get('/adm_articles/delete_{article_id}', AdminController::class.':articleD
 
 $app->get('/adm_articles/edit_{article_id}', AdminController::class.':FillArticleEdit')->setName('adm_articles_edit');
 
+$app->post('/adm_articles/edit_{article_id}', AdminController::class.':articleEdit')->setName('adm_articles');
+
+
 // --------- END OF ADMIND PART ---------
