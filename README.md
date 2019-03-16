@@ -1,63 +1,57 @@
 # Mots Pressés
 
-A working and simple Slim-PHP script for blogging
+A working and simple Slim-PHP-Twig-PostgresSQL application for blogging with a MVC architecture.
+It also uses Docker.
+
+The application consist of a blog, with an admin section. You can display posts, posts by categories, the team. You can obviously register on the website, and login/logout.
+
+With the admin section, you'll have a dashboard to see how many posts, categories, users you'll have on your application.
+You'll also be able to add/edit/delete posts, article and users.
 
 ## Useful links
 
 [Mockup](https://balsamiq.cloud/sei7jok/po0krtx/r44C8)
 
-[Front-end Trello](https://trello.com/b/s88qJWJX/front-end)
+[Trello](https://trello.com/b/s88qJWJX/les-mots-press%C3%A9s)
 
-[Back-end Trello](https://trello.com/b/8FG1QsnB/back-end)
-
-[github page](https://rabujev.github.io/blog-php/layout)
+[github page](https://rabujev.github.io/blog-php/)
 
 ## Status
 
 - Working environnement
 
-## Know issues
+## Known issues
 
-- probably a lot
+- When a category is deleted, and a post had only this category attached to it then it won't be displayed anymore even though the post is still in the database. -fix is to just check if when we want to delete a category, get all the posts that only have this category and change the category to a default one which is called 'uncategorised'
 
 ## To-do
 
-- Everything
+- Comment section add/edit/delete/display
 
 ## Team
 [Ludivine](https://github.com/LudivineHay)
 
-[Thibault](https://github.com/ThibautJanssens)
+[Thibaut](https://github.com/ThibautJanssens)
 
 [Jamal](https://github.com/rabujev)
 
 [Jeremy](https://github.com/scalajeremy)
 
 
-# Slim Framework 3 Skeleton Application
-
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
-
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
-
 ## Install the Application
+You'll need docker, npm and composer, php, php-pgsql.
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+Clone the repository in the folder of your choice.
+	```git clone https://github.com/rabujev/blog-php.git```
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+Then go inside the folder and install all the dependencies.
+	```cd blog-php && npm install && composer install```
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+To start the application on dev-mode in local, just run the command
+	```npm run dev```
+	
+The gulpfile.js will start docker with adminer for the database on `localhost:9000`
+, and also the php server at `localhost:8080`
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can run these commands
-
-	cd [my-app-name]
-	php composer.phar start
-
-Run this command in the application directory to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
+*You have a db.sql file that can set up the database. You just need to import it in your database.*
+*Do not forget to edit the `src/System/settings.php` file to your database port, username, password, database name.* 
