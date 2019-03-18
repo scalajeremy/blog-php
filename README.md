@@ -1,3 +1,12 @@
+## Team
+[Ludivine](https://github.com/LudivineHay)
+
+[Thibaut](https://github.com/ThibautJanssens)
+
+[Jamal](https://github.com/rabujev)
+
+[Jeremy](https://github.com/scalajeremy)
+
 # Mots Pressés
 
 A working and simple Slim-PHP-Twig-PostgresSQL application for blogging with a MVC architecture.
@@ -14,8 +23,6 @@ You'll also be able to add/edit/delete posts, article and users.
 
 [Trello](https://trello.com/b/s88qJWJX/les-mots-press%C3%A9s)
 
-[github page](https://rabujev.github.io/blog-php/)
-
 ## Status
 
 - Working environnement
@@ -27,15 +34,6 @@ You'll also be able to add/edit/delete posts, article and users.
 ## To-do
 
 - Comment section add/edit/delete/display
-
-## Team
-[Ludivine](https://github.com/LudivineHay)
-
-[Thibaut](https://github.com/ThibautJanssens)
-
-[Jamal](https://github.com/rabujev)
-
-[Jeremy](https://github.com/scalajeremy)
 
 
 ## Install the Application
