@@ -12,13 +12,13 @@ services:
   db:
     image: postgres:11.2
     ports:
-      - "5000:5432"
+      - "5432:5432"
     volumes:
       - dbvolume:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: test
+      POSTGRES_USER: bicky
+      POSTGRES_PASSWORD: bicky
+      POSTGRES_DB: bicky
 
   # Un serveur Adminer pour pouvoir tester les fonctionnalités de la base de données et
   # faire du debugging. Il est joignable avec un simple browser en utilisant http://localhost:9000 .
