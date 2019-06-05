@@ -17,12 +17,6 @@ The application consist of a blog, with an admin section. You can display posts,
 With the admin section, you'll have a dashboard to see how many posts, categories, users you'll have on your application.
 You'll also be able to add/edit/delete posts, article and users.
 
-## Useful links
-
-[Mockup](https://balsamiq.cloud/sei7jok/po0krtx/r44C8)
-
-[Trello](https://trello.com/b/s88qJWJX/les-mots-press%C3%A9s)
-
 ## Status
 
 - Working environnement
